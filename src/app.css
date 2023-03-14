@@ -12,6 +12,7 @@ body {
     overflow: auto;
 }
 
+
 body, html {
     @apply bg-black text-zinc-300
 }

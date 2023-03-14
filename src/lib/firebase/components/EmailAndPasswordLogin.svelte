@@ -20,12 +20,10 @@
 </script>
 
 
-    <input placeholder="Email Address" type="email" id="email" bind:value={email} required>
-    <input placeholder="Password" type="password" name="password" id="password" bind:value={password} required>
-
-    <a href="/reset-password">Forgot password?</a>
+    <input class="w-full max-w-sm" placeholder="Email Address" type="email" id="email" bind:value={email} required>
+    <input class="w-full max-w-sm" placeholder="Password" type="password" name="password" id="password" bind:value={password} required>
     
-    <button on:click={login}>Login</button>
+    <button class="w-full max-w-sm" on:click={login}>Login</button>
 
 
 {#if state == 'verifying'}
