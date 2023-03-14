@@ -1,0 +1,35 @@
+<script lang="ts">
+    import { emailAndPasswordSignIn } from "$lib/firebase/client";
+
+    type FormState = 'idle' | 'verifying' | Error;
+    let state: FormState;
+    let email:string;
+    let password: string
+
+    const login =async () => {
+        try {
+            state = 'verifying';
+            const { res, err } = await emailAndPasswordSignIn(email, password);
+
+            if (err) throw new Error(err);        
+        } catch (error) {
+            state = error as Error;
+        }
+    }
+
+</script>
+
+
+    <input placeholder="Email Address" type="email" id="email" bind:value={email} required>
+    <input placeholder="Password" type="password" name="password" id="password" bind:value={password} required>
+
+    <a href="/reset-password">Forgot password?</a>
+    
+    <button on:click={login}>Login</button>
+
+
+{#if state == 'verifying'}
+    <p>Logging in, please wait...</p>
+{:else if state instanceof Error}
+    <p>Unable to login, please try again.</p>
+{/if}
