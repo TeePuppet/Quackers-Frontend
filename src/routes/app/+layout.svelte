@@ -31,16 +31,20 @@
 </div>
 
 <style lang="postcss">
+
 	#side-menu {
-		@apply overflow-y-auto fixed bg-zinc-900 h-full flex flex-col justify-between px-3 pt-10 pb-6 w-48;
+        @apply fixed bottom-0 w-full border-t border-zinc-800 px-4 py-4;
+        @apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 
-    #content-area {
-        @apply ml-48 px-16 py-12;
+    #side-menu ul {
+        @apply flex justify-center;
+        @apply sm:flex-col sm:w-auto;
     }
 
-    ul {
-        @apply flex flex-col w-full;
+
+    #content-area {
+        @apply w-full sm:ml-48 px-16 py-12;
     }
 
     li a, li .side-btn{
