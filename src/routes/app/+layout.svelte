@@ -10,7 +10,7 @@
 
 </script>
 
-<div class="flex h-screen">
+<div class="flex h-full">
 	<div id="side-menu">
 		<ul>
 			<li><a href="/app">Dashboard</a></li>
@@ -44,7 +44,8 @@
 
 
     #content-area {
-        @apply w-full sm:ml-48 px-16 py-12;
+        @apply px-6 py-6;
+        @apply w-full sm:ml-48 sm:px-16 sm:py-12;
     }
 
     li a, li .side-btn{
