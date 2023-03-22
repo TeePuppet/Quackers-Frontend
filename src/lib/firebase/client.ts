@@ -3,6 +3,7 @@ import { PUBLIC_FIREBASE_API_KEY, PUBLIC_FIREBASE_AUTH_DOMAIN, PUBLIC_FIREBASE_P
 import { getApps, getApp, initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, setPersistence, inMemoryPersistence, type Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, type UserCredential } from 'firebase/auth';
 import { currentUser } from "$lib/store/user";
+import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
     apiKey: PUBLIC_FIREBASE_API_KEY,
@@ -20,7 +21,7 @@ export const auth = getConfiguredAuth();
 
 export async function emailAndPasswordSignIn(email: string, password: string): Promise<{res: Response | undefined, err: string | undefined}> {
     const credentials = signInWithEmailAndPassword(auth, email, password);
-
+    console.log(getFunctions())
     return loginHandler(credentials);
 }
 
