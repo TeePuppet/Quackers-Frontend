@@ -1,10 +1,17 @@
 <script lang="ts">
-	import { currentUser } from "$lib/store/user";
-
-    $currentUser
-    console.log($currentUser)
+	import CardButton from "./components/CardButton.svelte";
+    let time = new Date();
+    let hours = time.getHours();
+    let greeting = "Tet";
+    if(hours > 1) greeting = "Buna dimi ☕☀️"
+    if(hours > 11) greeting = "Buna ziua ☀️😊"
+    if(hours > 19) greeting = "Buna seara 🌙"
 </script>
 
-<h1>Hi, Welcome to the restricted section</h1>
-<h4>You shouldn't be able to access this unless you're logged in</h4>
+
+<h1 class="text-3xl mb-6">{greeting}</h1>
+<div class="grid md:grid-cols-2 gap-6 grid-cols-1">
+    <CardButton title="Site'uri" description="Creeaza site'uri si adauga postari" urlPath="/app/blogs"/>
+    <CardButton title="Tricouri" description="Uploadeaza design'uri si adauga-le pe TeePublic" urlPath="/app/shirts"/>
+</div>
 

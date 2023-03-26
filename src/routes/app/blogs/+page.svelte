@@ -1,5 +1,6 @@
 <script>
 	import Modal from "$lib/components/Modal.svelte";
+	import BlogEntry from "./components/BlogEntry.svelte";
 
 </script>
 
@@ -13,6 +14,8 @@
             </div>
         </Modal>
 	</div>
+
+    <BlogEntry blogTitle="eBuyer.ro" url="blogs/blog"/>
 
     <div>
        

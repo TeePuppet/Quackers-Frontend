@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
 	import { signOut } from '$lib/firebase/client';
+	// import Icon from 'svelte-awesome';
+	// import grid from 'svelte-awesome/icons/thLarge';
+	// import rocket from 'svelte-awesome/icons/rocket';
     
     const admin = true;
 	const logout = async () => {
@@ -14,8 +17,9 @@
 <div class="flex h-full">
 	<div id="side-menu">
 		<ul>
-			<li><a href="/app">Dashboard</a></li>
-			<li><a href="/app/blogs">Blogs</a></li>
+			
+			<li><a href="/app"><span class="menu-icon"><span class="menu-label">Dashboard</span></a></li>
+			<li><a href="/app/blogs"><span class="menu-icon"></span><span class="menu-label">Blogs</span></a></li>
 			<li><a href="/app/shirts">Shirts</a></li>
 
 		</ul>
@@ -43,7 +47,7 @@
 
 <style lang="postcss">
 	#side-menu {
-		@apply fixed bottom-0 w-full border-t border-zinc-800 px-4 py-4;
+		@apply fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 py-4;
 		@apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 
