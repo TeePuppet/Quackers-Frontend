@@ -6,6 +6,11 @@ export const handle = (async ({ event, resolve }) => {
     const { cookies } = event;
     const authToken = cookies.get('auth') as string;
     const user = authToken ? await getUserFromToken(authToken) : null;
+
+    if (event.url.pathname.startsWith('/app') && user) {
+        if(!user.verified) throw redirect(303, '/pending')
+    }
+
     if (event.url.pathname.startsWith('/login') && user) {
         throw redirect(303, '/app');
     }
@@ -16,7 +21,7 @@ export const handle = (async ({ event, resolve }) => {
         }
         
         if (event.url.pathname.startsWith('/app/admin')) {
-            if (!user.roles.includes("ADMIN")) {
+            if (!user.verified && user.role !== "duke_of_quack") {
                 throw redirect(303, '/app');
             }
         }
@@ -27,13 +32,14 @@ export const handle = (async ({ event, resolve }) => {
 
 async function getUserFromToken(token: string): Promise<User | null> {
     const decodedToken = await verifyIdToken(token);
-
+    // console.log(decodedToken)
     const user: User = {
         uid: decodedToken.uid,
         expiry_time: decodedToken.exp,
         email: decodedToken.email,
-        roles: []
+        verified: decodedToken.verified,
+        role: decodedToken.role
     }
-
+    
     return user;
 }
