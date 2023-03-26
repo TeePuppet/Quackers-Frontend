@@ -17,7 +17,7 @@
   }
 
   div.content-wrapper {
-    @apply fixed mt-20 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg;
+    @apply fixed mt-20 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg border-t border-zinc-700;
   }
   div.content {
     @apply  overflow-y-scroll px-6 pt-6 ;
