@@ -13,14 +13,18 @@
     @apply fixed top-0 left-0 w-full h-screen flex justify-center items-center;
   }
   div.backdrop {
-    @apply w-full h-full absolute bg-black bg-opacity-40;
+    @apply w-full h-full absolute bg-black bg-opacity-60;
   }
 
   div.content-wrapper {
-    @apply fixed top-20 left-0 right-0 w-full bottom-0 overflow-y-scroll bg-white z-10 px-6 pt-6;
+    @apply fixed mt-20 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg;
   }
   div.content {
-    @apply overflow-auto;
+    @apply  overflow-y-scroll px-6 pt-6 ;
+  }
+
+  div.header {
+    @apply bg-zinc-900 border-b border-b-zinc-800 px-6 pt-6 pb-4 flex justify-between items-center;
   }
 </style>
 
@@ -35,24 +39,26 @@
       <div class="backdrop" on:click={close} />
   
       <div class="content-wrapper">
-        <slot name="header">
-          <!-- fallback -->
-          <div>
-            <h1>Your Modal Heading Goes Here...</h1>
-          </div>
-        </slot>
+        <div class="header">
+            <slot name="header">
+            <!-- fallback -->
+                <h1>Your Modal Heading Goes Here...</h1>
+            </slot>
+            <button on:click={close}>Close</button>
+        </div>
   
         <div class="content">
           <slot name="content" />
+          <slot name="footer">
+            <!-- fallback -->
+            <div>
+              <h1>Your Modal Footer Goes Here...</h1>
+            </div>
+          </slot>
         </div>
   
-        <slot name="footer" {close}>
-          <!-- fallback -->
-          <div>
-            <h1>Your Modal Footer Goes Here...</h1>
-            <button on:click={close}>close</button>
-          </div>
-        </slot>
+
       </div>
+
     </div>
   {/if}
