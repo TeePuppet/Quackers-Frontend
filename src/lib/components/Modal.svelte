@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let action = "Open Modal";
     let isOpen = false
     function open() {
       isOpen = true
@@ -10,7 +11,7 @@
 
 <style>
   div.modal {
-    @apply fixed top-0 left-0 w-full h-screen flex justify-center items-center;
+    @apply z-10 fixed top-0 left-0 w-full h-screen flex justify-center items-center;
   }
   div.backdrop {
     @apply w-full h-full absolute bg-black bg-opacity-60;
@@ -30,7 +31,7 @@
 
 <slot name="trigger" {open}>
     <!-- fallback trigger to open the modal -->
-    <button on:click={open}>Open</button>
+    <button on:click={open}>{action}</button>
   </slot>
   
   {#if isOpen}
@@ -44,7 +45,7 @@
             <!-- fallback -->
                 <h1>Your Modal Heading Goes Here...</h1>
             </slot>
-            <button on:click={close}>Close</button>
+            <button on:click={close}>Inchide</button>
         </div>
   
         <div class="content">

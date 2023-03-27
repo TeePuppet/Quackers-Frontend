@@ -2,12 +2,12 @@
 <script lang="ts">
 	import Modal from "$lib/components/Modal.svelte";
 import PostListItem from "./components/PostListItem.svelte";
-
+    export let data
 
 </script>
 
 <div class="flex justify-between items-center mb-4">
-<h1>Postari - eBuyer.ro</h1>
+<h1>{data.siteName}</h1>
 <Modal/>
 </div>
 

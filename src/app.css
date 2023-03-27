@@ -34,5 +34,5 @@ button, [type='button'], [type='reset'], [type='submit'] {
 }
 
 h1 {
-    @apply text-lg font-bold
+    @apply text-2xl font-bold
 }

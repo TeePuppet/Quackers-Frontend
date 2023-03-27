@@ -4,6 +4,9 @@ import { getApps, getApp, initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, setPersistence, inMemoryPersistence, type Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, type UserCredential } from 'firebase/auth';
 import { currentUser } from "$lib/store/user";
 
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore"; 
+
 const firebaseConfig = {
     apiKey: PUBLIC_FIREBASE_API_KEY,
     authDomain: PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -15,7 +18,7 @@ const firebaseConfig = {
 };
 
 const firebaseClient: FirebaseApp = getApps.length ? getApp() : initializeApp(firebaseConfig);
-
+export const database = getFirestore(firebaseClient);
 export const auth = getConfiguredAuth();
 
 export async function emailAndPasswordSignIn(email: string, password: string): Promise<{res: Response | undefined, err: string | undefined}> {
@@ -85,4 +88,12 @@ function getConfiguredAuth(): Auth  {
     setPersistence(auth, inMemoryPersistence);
 
     return auth;
+}
+
+
+// DATABASE
+
+export const addWebsiteToDatabse = async (websiteName:string, data:any) => {
+    
+    await setDoc(doc(database, "websites", websiteName), data);
 }
