@@ -13,7 +13,7 @@
 
 <style lang="postcss">
     a {
-		@apply flex flex-col sm:flex-row items-center text-center w-full px-3 py-2 rounded;
+		@apply flex flex-col sm:flex-row items-center text-center w-full sm:px-3 px-2 py-2 rounded;
 		@apply hover:bg-zinc-800 hover:cursor-pointer;
 	}
 
