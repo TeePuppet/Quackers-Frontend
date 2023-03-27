@@ -35,7 +35,7 @@
 	}
 
 	#side-menu {
-		@apply z-10 fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 py-4;
+		@apply z-10 fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 pt-2 pb-6;
 		@apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 

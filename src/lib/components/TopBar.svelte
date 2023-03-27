@@ -18,7 +18,7 @@
 
 <style lang="postcss">
     	#admin {
-		@apply flex items-center px-4;
+		@apply flex items-center;
 	}
 	#admin a {
 		@apply block opacity-40 hover:opacity-100 px-2 py-2 rounded-md;

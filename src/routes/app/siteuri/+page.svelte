@@ -15,7 +15,7 @@
         })
     } 
 </script>
-    <ContentTitle title="Blogs">
+    <ContentTitle title="Site'uri">
 
         <Modal action="Adauga un site">
             <h1 slot="header">Adauga un site nou</h1>
