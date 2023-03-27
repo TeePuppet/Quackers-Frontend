@@ -1,53 +1,41 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
-	import { signOut } from '$lib/firebase/client';
-	// import Icon from 'svelte-awesome';
-	// import grid from 'svelte-awesome/icons/thLarge';
-	// import rocket from 'svelte-awesome/icons/rocket';
+
+	import SideMenuItem from '$lib/components/navigation/SideMenuItem.svelte';
+	import TopBar from '$lib/components/TopBar.svelte';
     
     const admin = true;
-	const logout = async () => {
-		await signOut()
-			.then(() => invalidateAll())
-			.catch((err) => console.error('Unable to sign out', err));
-	};
+
 </script>
 
 
 <div class="flex h-full">
 	<div id="side-menu">
 		<ul>
-			
-			<li><a href="/app"><span class="menu-icon"><span class="menu-label">Dashboard</span></a></li>
-			<li><a href="/app/blogs"><span class="menu-icon"></span><span class="menu-label">Blogs</span></a></li>
-			<li><a href="/app/shirts">Shirts</a></li>
-
+			<SideMenuItem path="/app" faIcon="fa-regular fa-font-awesome" label="Home"/>
+			<SideMenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
 		</ul>
         <div>
-		{#if admin}
-            <ul id="duke_of_quack">
-                <li><a href="/app/admin/users">Users</a></li>
-                <!-- <li><a href="/app/admin/crypto">Crypto</a></li> -->
-            </ul>
-		{/if}
-        <ul>
-            <li><a href="/app/shirts">Settings</a></li>
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-			<li><span class="side-btn" on:click={logout}>Logout</span></li>
-        </ul>
     </div>
 
 	</div>
 
 	<!-- Content Area -->
-	<div id="content-area">
-		<slot />
+	<div id="content-area" class="">
+		<TopBar/>
+		<div id="content">
+			<slot />
+		</div>
 	</div>
 </div>
 
 <style lang="postcss">
+
+	#content-area {
+		@apply w-full sm:ml-48;
+	}
+
 	#side-menu {
-		@apply fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 py-4;
+		@apply z-10 fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 py-4;
 		@apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 
@@ -56,14 +44,10 @@
 		@apply sm:flex-col sm:w-auto;
 	}
 
-	#content-area {
+	#content {
 		@apply px-6 py-6;
-		@apply w-full sm:ml-48 sm:px-16 sm:py-12;
+		@apply w-full  sm:px-12 sm:py-6;
 	}
 
-	li a,
-	li .side-btn {
-		@apply block w-full px-3 py-2 rounded;
-		@apply hover:bg-zinc-800 hover:cursor-pointer;
-	}
+
 </style>
