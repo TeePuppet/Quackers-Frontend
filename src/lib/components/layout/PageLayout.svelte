@@ -23,12 +23,12 @@
 <style lang="postcss">
     #content {
         @apply px-4 py-5;
-        @apply sm:px-8 sm:py-4;
+        @apply sm:px-12 sm:py-4;
     }
 
 	#top-bar {
-		@apply flex justify-between items-center px-4 py-2;
-		@apply border-b border-zinc-800 sm:px-8 sm:py-2;
+		@apply sticky z-10 top-0 flex justify-between items-center px-4 py-2 bg-zinc-400 bg-opacity-10 backdrop-blur-md;
+		@apply border-b border-zinc-800 sm:px-12 sm:py-2;
 	}
 
 </style>
