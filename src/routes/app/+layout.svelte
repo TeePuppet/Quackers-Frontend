@@ -14,9 +14,9 @@
 			<SideMenuItem path="/app" faIcon="fa-regular fa-font-awesome" label="Home"/>
 			<SideMenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
 		</ul>
-        <div>
-    </div>
-
+		<ul>
+			<SideMenuItem path="/app" faIcon="fa-solid fa-gear" label="Setari"/>
+		</ul>
 	</div>
 
 	<!-- Content Area -->
