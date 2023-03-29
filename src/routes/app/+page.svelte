@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ContentTitle from "$lib/components/ContentTitle.svelte";
-import CardButton from "./components/CardButton.svelte";
+    import PageLayout from "$lib/components/layout/PageLayout.svelte";
+    import Card from "$lib/components/Card.svelte";
     let time = new Date();
     let hours = time.getHours();
     let greeting = "Tet";
@@ -12,9 +12,12 @@ import CardButton from "./components/CardButton.svelte";
 
 </script>
 
-<ContentTitle title={greeting} />
 
-<div class="grid md:grid-cols-2 gap-6 grid-cols-1">
-    <CardButton title="Site'uri" description="Creeaza site'uri si adauga postari" urlPath="/app/siteuri"/>
-</div>
+<PageLayout topBar={false}>
+    {greeting}
+
+    <div class="grid md:grid-cols-2 gap-6 grid-cols-1">
+        <Card title="Site'uri" description="Creeaza site'uri si adauga postari" urlPath="/app/siteuri"/>
+    </div>
+</PageLayout>
 

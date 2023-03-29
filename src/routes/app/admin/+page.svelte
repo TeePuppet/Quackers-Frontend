@@ -1,2 +1,7 @@
-<h1>Hi, Welcome to the admin section</h1>
-<h4>You shouldn't be able to access this unless you're an admin</h4>
+<script>
+	import PageLayout from "$lib/components/layout/PageLayout.svelte";
+
+</script>
+<PageLayout pageTitle="Admin">
+    Pagina Admin
+</PageLayout>

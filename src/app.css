@@ -36,3 +36,7 @@ button, [type='button'], [type='reset'], [type='submit'] {
 h1 {
     @apply text-2xl font-bold
 }
+
+button.small {
+    @apply text-sm px-3;
+}

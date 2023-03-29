@@ -45,7 +45,7 @@
             <!-- fallback -->
                 <h1>Your Modal Heading Goes Here...</h1>
             </slot>
-            <button on:click={close}>Inchide</button>
+            <button class="small" on:click={close}>Inchide</button>
         </div>
   
         <div class="content">

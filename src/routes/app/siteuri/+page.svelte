@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ContentTitle from "$lib/components/ContentTitle.svelte";
+	import PageLayout from "$lib/components/layout/PageLayout.svelte";
     import Modal from "$lib/components/Modal.svelte";
 	import { addWebsiteToDatabse } from "$lib/firebase/client";
 	import { currentUser } from "$lib/store/user";
@@ -30,8 +30,9 @@
         })
 
 </script>
-    <ContentTitle title="Site'uri">
 
+<PageLayout pageTitle="Site'uri">
+    <div slot="topBar">
         <Modal action="Adauga un site">
             <h1 slot="header">Adauga un site nou</h1>
             <div slot="content">
@@ -42,8 +43,7 @@
                 <button on:click={addSite}>Adauga site</button>
             </div>
         </Modal>
-    
-    </ContentTitle>
+    </div>
 
     <div class="flex flex-col gap-2">
         {#each websites as website }
@@ -51,5 +51,5 @@
         {/each}
     </div>
 
-    <div>
-    </div>
+</PageLayout>
+

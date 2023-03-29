@@ -1,7 +1,6 @@
 <script lang="ts">
 
 	import SideMenuItem from '$lib/components/navigation/SideMenuItem.svelte';
-	import TopBar from '$lib/components/TopBar.svelte';
     
     const admin = true;
 
@@ -13,15 +12,12 @@
 		<ul>
 			<SideMenuItem path="/app" faIcon="fa-regular fa-font-awesome" label="Home"/>
 			<SideMenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
-		</ul>
-		<ul>
 			<SideMenuItem path="/app" faIcon="fa-solid fa-gear" label="Setari"/>
 		</ul>
 	</div>
 
 	<!-- Content Area -->
 	<div id="content-area" class="">
-		<TopBar/>
 		<div id="content">
 			<slot />
 		</div>
@@ -40,14 +36,8 @@
 	}
 
 	#side-menu ul {
-		@apply flex justify-center;
-		@apply sm:flex-col sm:w-auto;
+		@apply flex justify-center gap-4;
+		@apply sm:flex-col sm:w-auto sm:gap-0;
 	}
-
-	#content {
-		@apply px-6 py-6;
-		@apply w-full  sm:px-12 sm:py-6;
-	}
-
 
 </style>
