@@ -1,45 +1,17 @@
-import { redirect, type Handle } from "@sveltejs/kit";
-import { verifyIdToken } from '$lib/firebase/admin';
-import type { User } from "$lib/types/user";
+import type { Handle } from '@sveltejs/kit';
+import { decodeToken } from '$lib/firebase/admin';
+import { SESSION_COOKIE_NAME } from '$lib/constants';
 
 export const handle = (async ({ event, resolve }) => {
-    const { cookies } = event;
-    const authToken = cookies.get('auth') as string;
-    const user = authToken ? await getUserFromToken(authToken) : null;
+    const { cookies } = event
+    const token = cookies.get(SESSION_COOKIE_NAME)
 
-    if (event.url.pathname.startsWith('/app') && user) {
-        if(!user.verified) throw redirect(303, '/pending')
-    }
-
-    if (event.url.pathname.startsWith('/login') && user) {
-        throw redirect(303, '/app');
-    }
-
-    if (event.url.pathname.startsWith('/app')) {
-        if (!user) {
-            throw redirect(303, '/');
-        }
-        
-        if (event.url.pathname.startsWith('/app/admin')) {
-            if (!user.verified && user.role !== "duke_of_quack") {
-                throw redirect(303, '/app');
-            }
+    if (token) {
+        const decodedToken = await decodeToken(token);
+        if (decodedToken) {
+            event.locals.user = decodedToken
         }
     }
 
     return resolve(event);
 }) satisfies Handle;
-
-async function getUserFromToken(token: string): Promise<User | null> {
-    const decodedToken = await verifyIdToken(token);
-    // console.log(decodedToken)
-    const user: User = {
-        uid: decodedToken.uid,
-        expiry_time: decodedToken.exp,
-        email: decodedToken.email,
-        verified: decodedToken.verified,
-        role: decodedToken.role
-    }
-    
-    return user;
-}

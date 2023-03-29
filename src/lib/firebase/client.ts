@@ -1,11 +1,11 @@
-import { goto } from "$app/navigation";
+// import { memoize } from "lodash";
+import { initializeApp } from 'firebase/app';
+// import { getAnalytics } from 'firebase/analytics';
+import { getAuth } from 'firebase/auth';
 import { PUBLIC_FIREBASE_API_KEY, PUBLIC_FIREBASE_AUTH_DOMAIN, PUBLIC_FIREBASE_PROJECT_ID, PUBLIC_FIREBASE_STORAGE_BUCKET, PUBLIC_FIREBASE_MESSAGING_SENDER_ID, PUBLIC_FIREBASE_APP_ID, PUBLIC_FIREBASE_MEASUREMENT_ID } from "$env/static/public";
-import { getApps, getApp, initializeApp, type FirebaseApp } from 'firebase/app';
-import { getAuth, setPersistence, inMemoryPersistence, type Auth, signInWithEmailAndPassword, type UserCredential } from 'firebase/auth';
-import { currentUser } from "$lib/store/user";
-import { getFirestore  } from "firebase/firestore";
 
 
+// firebase config
 const firebaseConfig = {
     apiKey: PUBLIC_FIREBASE_API_KEY,
     authDomain: PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -16,80 +16,10 @@ const firebaseConfig = {
     measurementId: PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-const firebaseClient: FirebaseApp = getApps.length ? getApp() : initializeApp(firebaseConfig);
-export const database = getFirestore(firebaseClient);
-export const auth = getConfiguredAuth();
-
-export async function emailAndPasswordSignIn(email: string, password: string): Promise<{res: Response | undefined, err: string | undefined}> {
-    const credentials = signInWithEmailAndPassword(auth, email, password);
-    return loginHandler(credentials);
-}
-
-export async function signOut() {
-    try {
-        await auth.signOut();
-        await signOutOfServerSession();
-    } catch (err) {
-        console.error('Unable to sign out', err);
-    }
-}
-
-const loginHandler = async (credPromise: Promise<UserCredential>) => {
-    let res: Response | undefined, err: string | undefined;
-
-    try {
-        const credentials = await credPromise;
-        const token = await credentials.user.getIdToken();
-        // const tokenResult = await credentials.user.getIdTokenResult()
-        // console.log(tokenResult.claims)
-        res = await sendTokenToServer(token);
-
-        if (res.ok) {
-
-            currentUser.set(credentials.user);
-            if (res.redirected) {
-                await goto(res.url);
-            }
-        }        
-    } catch (error) {
-        err = (error as Error).message;
-        console.error(err);
-        signOut(); // ensure we don't end up in a state with the client logged in and server logged out
-    }
-
-    return { res, err };
-}
-
-const sendTokenToServer = async (token: string) => {
-    return await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: new Headers({ Authorization: `Bearer ${token}`})
-    });
-}
-
-const signOutOfServerSession = async () => {
-    return await fetch('/api/auth/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': "application/json"
-        }
-    });
-}
-
-function getConfiguredAuth(): Auth  {
-    const auth = getAuth(firebaseClient);
-
-    auth.useDeviceLanguage();
-    setPersistence(auth, inMemoryPersistence);
-
-    return auth;
-}
-
-
-
-// DATABASE
-import { setDoc, doc} from "firebase/firestore";
-
-export const addWebsiteToDatabse = async (websiteName:string, data:any) => {
-    await setDoc(doc(database, "websites", websiteName), data);
-};
+// Initialize Firebase
+// export const initFirebase = memoize(() => {
+    const app = initializeApp(firebaseConfig);
+    // export const analytics = getAnalytics(app);
+    export const auth = getAuth(app);
+    // return { app, auth }
+// })

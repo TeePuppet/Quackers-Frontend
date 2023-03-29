@@ -7,13 +7,15 @@
 </script>
 
 
-<div class="flex h-full">
+<div id="main" class="flex h-full">
 	<div id="side-menu">
-		<ul>
+		<div id="mobile">
 			<MenuItem path="/app" faIcon="fa-solid fa-rocket" label="Home"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
-			<MenuItem path="/app/account" faIcon="fa-solid fa-gear" label="Setari"/>
-		</ul>
+		</div>
+		<div class="hidden sm:block">
+			<button class="items-end">Logout</button>
+		</div>
 	</div>
 
 	<!-- Content Area -->
@@ -25,7 +27,6 @@
 </div>
 
 <style lang="postcss">
-
 	#content-area {
 		@apply w-full sm:ml-48;
 	}
@@ -35,7 +36,7 @@
 		@apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 
-	#side-menu ul {
+	#side-menu #mobile {
 		@apply flex justify-center gap-4;
 		@apply sm:flex-col sm:w-auto sm:gap-0;
 	}

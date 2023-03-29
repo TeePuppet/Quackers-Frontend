@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body, html {
-    @apply bg-black text-zinc-300 antialiased
+    @apply bg-black bg-gradient-to-b text-zinc-300 antialiased
 }
 
 body {

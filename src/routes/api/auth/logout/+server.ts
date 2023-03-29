@@ -1,8 +1,13 @@
-import type { RequestHandler } from "@sveltejs/kit";
+import { SESSION_COOKIE_NAME } from '$lib/constants';
+import { json, type RequestHandler } from '@sveltejs/kit';
 
-export const POST = ( async ({ locals, cookies }) => {
-    locals.user = null;
-    cookies.delete('auth', { path: '/'});
+export const POST = (async (event) => {
+    event.cookies.delete(SESSION_COOKIE_NAME);
+    event.locals.user = null;
 
-    return new Response('', { status: 200, statusText: 'Logged out successfully' });
+    return json({
+        success: true,
+        message: "Logged out"
+    })
+
 }) satisfies RequestHandler;

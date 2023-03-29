@@ -2,7 +2,7 @@
 	import PageLayout from "$lib/components/layout/PageLayout.svelte";
 	import Modal from "$lib/components/Modal.svelte";
 	import UserList from "./UserList.svelte";
-	export let data;
+	// export let data;
 
 </script>
 <PageLayout pageTitle="Utilizatori">
@@ -10,4 +10,4 @@
 </PageLayout>
 
 
-<UserList userData={data.newData} />
+<!-- <UserList userData={data.newData} /> -->
