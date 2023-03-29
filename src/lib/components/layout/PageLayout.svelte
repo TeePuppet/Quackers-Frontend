@@ -22,7 +22,7 @@
 
 <style lang="postcss">
     #content {
-        @apply px-6 py-5;
+        @apply px-6 py-5 overflow-y-scroll;
         @apply sm:px-8 sm:py-4;
     }
 
@@ -33,7 +33,8 @@
 		@apply block opacity-40 hover:opacity-100 px-2 py-2 rounded-md;
 	}
 	#top-bar {
-		@apply flex justify-between items-center px-6 py-2;
+		@apply sticky top-0 flex justify-between items-center px-6 py-2;
 		@apply border-b border-zinc-800 sm:px-8 sm:py-2;
 	}
+
 </style>
