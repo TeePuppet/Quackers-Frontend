@@ -7,6 +7,9 @@ import CardButton from "./components/CardButton.svelte";
     if(hours > 1) greeting = "Buna dimi ☕☀️"
     if(hours > 11) greeting = "Buna ziua ☀️😊"
     if(hours > 19) greeting = "Buna seara 🌙"
+
+
+
 </script>
 
 <ContentTitle title={greeting} />

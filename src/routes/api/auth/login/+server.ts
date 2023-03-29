@@ -13,7 +13,7 @@ export const POST = (({ request, cookies }) => {
         httpOnly: true,
         sameSite: 'strict',
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 60 * 60 * 24 * 30// 1 hour
+        maxAge: 60 * 60 // 1 hour
     });
 
     throw redirect(303, '/app');

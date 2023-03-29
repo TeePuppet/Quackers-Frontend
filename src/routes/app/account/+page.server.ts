@@ -1,5 +1,5 @@
 import type { PageServerLoad } from "./$types";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-export const load = (async (event) => {
+export const load = ((event) => {
 }) satisfies PageServerLoad;

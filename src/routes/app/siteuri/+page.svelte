@@ -2,18 +2,33 @@
 	import ContentTitle from "$lib/components/ContentTitle.svelte";
     import Modal from "$lib/components/Modal.svelte";
 	import { addWebsiteToDatabse } from "$lib/firebase/client";
-	import BlogEntry from "./components/BlogEntry.svelte";
+	import { currentUser } from "$lib/store/user";
+
+	import WebsiteEntry from "./components/WebsiteEntry.svelte";
+    
+    export let data;
+
+    let websites = data.websites
 
     let siteName:string 
     let siteRepo:string 
+    let owner:string
 
+    currentUser.subscribe(value => {
+		if(value) owner = value.uid
+        if(value) console.log(value)
+	});
 
-    const addSite = async() => {
-        const add = await addWebsiteToDatabse(siteName, {
+    const addSite = async() => await addWebsiteToDatabse(siteName, {
             name: siteName,
-            repo: siteRepo
+            repo: siteRepo,
+            owner: owner,
+            moderators: ['UserID', 'UserID'],
+            categories: [],
+            posts: [],
+            pages: []
         })
-    } 
+
 </script>
     <ContentTitle title="Site'uri">
 
@@ -31,8 +46,9 @@
     </ContentTitle>
 
     <div class="flex flex-col gap-2">
-        <BlogEntry blogTitle="eBuyer.ro" url="siteuri/eBuyer"/>
-        <BlogEntry blogTitle="Bebetrei.ro" url="siteuri/bebe"/>
+        {#each websites as website }
+            <WebsiteEntry blogTitle="{website.name}" url=siteuri/{website.name}/>
+        {/each}
     </div>
 
     <div>

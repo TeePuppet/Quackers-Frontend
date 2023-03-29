@@ -3,9 +3,8 @@ import { PUBLIC_FIREBASE_API_KEY, PUBLIC_FIREBASE_AUTH_DOMAIN, PUBLIC_FIREBASE_P
 import { getApps, getApp, initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, setPersistence, inMemoryPersistence, type Auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, type UserCredential } from 'firebase/auth';
 import { currentUser } from "$lib/store/user";
+import { getFirestore  } from "firebase/firestore";
 
-import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore"; 
 
 const firebaseConfig = {
     apiKey: PUBLIC_FIREBASE_API_KEY,
@@ -23,13 +22,6 @@ export const auth = getConfiguredAuth();
 
 export async function emailAndPasswordSignIn(email: string, password: string): Promise<{res: Response | undefined, err: string | undefined}> {
     const credentials = signInWithEmailAndPassword(auth, email, password);
-
-    return loginHandler(credentials);
-}
-
-export async function googleSignIn() {
-    const credentials = signInWithPopup(auth, new GoogleAuthProvider());
-
     return loginHandler(credentials);
 }
 
@@ -48,9 +40,12 @@ const loginHandler = async (credPromise: Promise<UserCredential>) => {
     try {
         const credentials = await credPromise;
         const token = await credentials.user.getIdToken();
+        // const tokenResult = await credentials.user.getIdTokenResult()
+        // console.log(tokenResult.claims)
         res = await sendTokenToServer(token);
 
         if (res.ok) {
+
             currentUser.set(credentials.user);
             if (res.redirected) {
                 await goto(res.url);
@@ -91,9 +86,10 @@ function getConfiguredAuth(): Auth  {
 }
 
 
+
 // DATABASE
+import { setDoc, doc} from "firebase/firestore";
 
 export const addWebsiteToDatabse = async (websiteName:string, data:any) => {
-    
     await setDoc(doc(database, "websites", websiteName), data);
-}
+};
