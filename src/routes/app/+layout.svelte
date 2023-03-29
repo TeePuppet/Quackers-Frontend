@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import SideMenuItem from '$lib/components/navigation/SideMenuItem.svelte';
+	import MenuItem from '$lib/components/navigation/MenuItem.svelte';
     
     const admin = true;
 
@@ -10,9 +10,9 @@
 <div class="flex h-full">
 	<div id="side-menu">
 		<ul>
-			<SideMenuItem path="/app" faIcon="fa-regular fa-font-awesome" label="Home"/>
-			<SideMenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
-			<SideMenuItem path="/app" faIcon="fa-solid fa-gear" label="Setari"/>
+			<MenuItem path="/app" faIcon="fa-solid fa-rocket" label="Home"/>
+			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
+			<MenuItem path="/app/account" faIcon="fa-solid fa-gear" label="Setari"/>
 		</ul>
 	</div>
 

@@ -19,6 +19,5 @@ export const getAdminApp = () => getApps().length ? getApp() : initializeApp(adm
 
 export const verifyIdToken = (token: string) => {
     const auth = getAuth(getAdminApp());
-
     return auth.verifyIdToken(token);
 }

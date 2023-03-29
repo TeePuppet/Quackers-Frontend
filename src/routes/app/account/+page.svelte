@@ -11,5 +11,6 @@
 </script>
 
 <PageLayout pageTitle="Setari">
+	
 	<button on:click={logout}>Logout</button>
 </PageLayout>

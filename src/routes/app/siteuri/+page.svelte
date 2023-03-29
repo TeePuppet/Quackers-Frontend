@@ -1,10 +1,9 @@
 <script lang="ts">
 	import PageLayout from "$lib/components/layout/PageLayout.svelte";
     import Modal from "$lib/components/Modal.svelte";
+    import Row from "$lib/components/Row.svelte";
 	import { addWebsiteToDatabse } from "$lib/firebase/client";
 	import { currentUser } from "$lib/store/user";
-
-	import WebsiteEntry from "./components/WebsiteEntry.svelte";
     
     export let data;
 
@@ -16,7 +15,6 @@
 
     currentUser.subscribe(value => {
 		if(value) owner = value.uid
-        if(value) console.log(value)
 	});
 
     const addSite = async() => await addWebsiteToDatabse(siteName, {
@@ -47,7 +45,9 @@
 
     <div class="flex flex-col gap-2">
         {#each websites as website }
-            <WebsiteEntry blogTitle="{website.name}" url=siteuri/{website.name}/>
+            <Row url="siteuri/{website.name}" title="{website.name} ({website.posts.length})">
+
+            </Row>
         {/each}
     </div>
 

@@ -22,18 +22,12 @@
 
 <style lang="postcss">
     #content {
-        @apply px-4 py-5 overflow-y-scroll;
+        @apply px-4 py-5;
         @apply sm:px-8 sm:py-4;
     }
 
-    	#admin {
-		@apply flex items-center;
-	}
-	#admin a {
-		@apply block opacity-40 hover:opacity-100 px-2 py-2 rounded-md;
-	}
 	#top-bar {
-		@apply sticky top-0 flex justify-between items-center px-4 py-2;
+		@apply flex justify-between items-center px-4 py-2;
 		@apply border-b border-zinc-800 sm:px-8 sm:py-2;
 	}
 

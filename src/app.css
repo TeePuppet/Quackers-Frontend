@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    overflow: hidden;
-    /* height: 100%; */
-}
-
-body {
-    /* height: 100%; */
-    overflow: auto;
-    overscroll-behavior: none
-}
-
-
 body, html {
     @apply bg-black text-zinc-300 antialiased
 }
@@ -25,8 +13,8 @@ body {
 
 /* General Styles */
 input {
-    @apply mb-3 px-4 py-3 rounded outline-none border-2 bg-zinc-800 border-zinc-700;
-    @apply focus:border-green-400 focus:border-solid ;
+    @apply mb-3 px-4 py-3 rounded outline-none border bg-zinc-800 border-zinc-700;
+    @apply focus:border-white focus:border-solid ;
 }
 
 button, [type='button'], [type='reset'], [type='submit'] {
