@@ -27,7 +27,7 @@
     }
 
 	#top-bar {
-		@apply sticky z-10 top-0 flex justify-between items-center px-4 py-2 bg-zinc-400 bg-opacity-10 backdrop-blur-md;
+		@apply sticky z-10 top-0 flex justify-between items-center px-4 py-2 bg-black bg-opacity-60 backdrop-blur-md;
 		@apply border-b border-zinc-800 sm:px-12 sm:py-2;
 	}
 
