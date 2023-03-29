@@ -3,13 +3,10 @@
     import Card from "$lib/components/Card.svelte";
     let time = new Date();
     let hours = time.getHours();
-    let greeting = "Tet";
+    let greeting = "";
     if(hours > 1) greeting = "Buna dimi ☕☀️"
     if(hours > 11) greeting = "Buna ziua ☀️😊"
     if(hours > 19) greeting = "Buna seara 🌙"
-
-
-
 </script>
 
 

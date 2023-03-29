@@ -1,5 +1,3 @@
-export const prerender = true;
-
 import { database } from "$lib/firebase/client";
 import { collection, getDocs } from "firebase/firestore";
 
