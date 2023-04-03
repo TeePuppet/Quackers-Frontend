@@ -46,10 +46,10 @@
                     <h2 class="font-semibold">Adauga o postare noua</h2>
                 </div>
                 <div slot="content">
-                    <Input extraClass="w-full border-0 text-sm" placeholder="Titlu postare" bind:value={postTitle}/>
+                    <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={postTitle}/>
                     <button class="w-full small mb-2">Genereaza Introducere</button>
                     {#if introducere}
-                    <Input type="textArea" extraClass="w-full text-sm" placeholder="e.g. Top 10. Cele mai bune frigidere" bind:value={postTitle}/>
+                    <Input type="textArea" extraClass="w-full" placeholder="e.g. Top 10. Cele mai bune frigidere" bind:value={postTitle}/>
                     {/if}
                     <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
                     {#if prod.length > 0}
@@ -60,7 +60,7 @@
                         <div>Nu ai nici un produs adaugat in top</div>
                         {/if}
                     <div class="flex gap-2 justify-between items-center">
-                        <Input extraClass="w-full text-sm m-0" placeholder="Link eMag" bind:value={product}/>
+                        <Input extraClass="w-full m-0" placeholder="Link eMag" bind:value={product}/>
                         <button class="small" on:click={addProduct}>Adauga</button>
                     </div>
                     
