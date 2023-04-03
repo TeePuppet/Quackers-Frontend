@@ -27,4 +27,7 @@ button, [type='button'], [type='reset'], [type='submit'] {
 h1 {
     @apply text-2xl font-bold
 }
+h2 {
+    @apply text-lg font-semibold
+}
 

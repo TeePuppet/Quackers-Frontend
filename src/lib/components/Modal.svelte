@@ -1,26 +1,25 @@
 <script lang="ts">
     export let action = "Open Modal";
-    let isOpen = false
-    function open() {
+    export let isOpen = false
+    function openModal() {
       isOpen = true
     }
-    function close() {
+    export const closeModal = () => {
       isOpen = false
-    }
-    
+    }    
   </script>
 
 
 
 <slot name="trigger" {open}>
     <!-- fallback trigger to open the modal -->
-    <button class="small" on:click={open}>{action}</button>
+    <button class="small" on:click={openModal}>{action}</button>
   </slot>
   
   {#if isOpen}
     <div class="modal">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div class="backdrop" on:click={close} />
+      <div class="backdrop" on:click={closeModal} />
   
       <div class="content-wrapper">
         <div class="header">
@@ -28,7 +27,7 @@
             <!-- fallback -->
                 <h1>Your Modal Heading Goes Here...</h1>
             </slot>
-            <button class="small" on:click={close}>Inchide</button>
+            <button class="small" on:click={closeModal}>Inchide</button>
         </div>
   
         <div class="content">

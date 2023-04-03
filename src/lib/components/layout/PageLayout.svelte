@@ -8,7 +8,7 @@
         <div class="flex items-center">
             <button on:click={() => history.back()} class="border-none"><i class="fa-solid fa-chevron-left"></i></button>
             <div>
-                <h2 class="font-semibold">{pageTitle}</h2>
+                <span class="font-semibold">{pageTitle}</span>
             </div>
 
         </div>

@@ -7,15 +7,24 @@
 	import { Websites } from "$lib/stores/websites";
 	import Row from "$lib/components/Row.svelte";
 	import Input from "$lib/components/Input.svelte";
+	import Tabs from "$lib/components/Tabs.svelte";
+	import TabContent from "$lib/components/TabContent.svelte";
 
-    console.log($page)
 
+    let tabs = ["Postari", "Categorii"]
+    let selectedTab:string = "Postari"
+    const tabChange = (event:CustomEvent) => {
+        selectedTab = event.detail
+    }
+
+    let modal: boolean
     let postTitle:string
     let product: string
     let products:{link:string}[] = []
     let introducere:string
     $:prod = products
 
+    const closeModal = () => modal = false
     const addProduct = () => {
         products = [...products, {link:product}]
         product = ""
@@ -33,15 +42,36 @@
         <h2>Nume Site</h2>
         <p>Github.url</p>
     </div>
-    <div id="tabs">
-        <div>Postari</div>
-        <div>Categorii</div>
-        <div>Pagini</div>
-    </div>
-    <div id="Postari">
+
+    <Tabs {tabs} {selectedTab} on:tabChange={tabChange}/>
+
+    {#if selectedTab === "Postari"}
+        <TabContent title={selectedTab}>
+            <div slot="action">
+                <button>Postare Noua</button>
+            </div>
+            <div slot="content">
+                <Row> Titlu Postare </Row>
+                <Row> Titlu Postare </Row>
+                <Row> Titlu Postare </Row>
+                <Row> Titlu Postare </Row>
+            </div>
+        </TabContent>        
+    {:else if selectedTab === "Categorii"}
+        <TabContent title={selectedTab}>
+            <div slot="action">
+                <button>Categorie Noua</button>
+            </div>
+            <div slot="content">
+                <Row> Categorie </Row>
+                <Row> Categorie </Row>
+            </div>
+        </TabContent>  
+    {/if}
+    <!-- <div id="Postari">
         <div class=" bg-zinc-900 flex justify-between items-center px-4 py-2">
             <span>Postari</span>
-            <Modal action="Postare Noua">
+            <Modal action="Postare Noua" bind:isOpen={modal}>
                 <div slot="header">
                     <h2 class="font-semibold">Adauga o postare noua</h2>
                 </div>
@@ -61,14 +91,14 @@
                         {/if}
                     <div class="flex gap-2 justify-between items-center">
                         <Input extraClass="w-full m-0" placeholder="Link eMag" bind:value={product}/>
-                        <button class="small" on:click={addProduct}>Adauga</button>
+                        <button class="small">Adauga</button>
                     </div>
                     
 
                 </div>
 
             <div slot="footer" class="mt-6">
-                <button class="small w-full">Adauga Postare</button>
+                <button class="small w-full" on:click={closeModal}>Adauga Postare</button>
             </div>
             </Modal>
         </div>
@@ -76,7 +106,7 @@
         <Row> Titlu Postare </Row>
         <Row> Titlu Postare </Row>
         <Row> Titlu Postare </Row>
-    </div>
+    </div> -->
 </PageLayout>
 
 <style lang="postcss">
