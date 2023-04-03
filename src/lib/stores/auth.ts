@@ -1,11 +1,13 @@
 import { page } from '$app/stores';
 import { derived } from 'svelte/store';
 
-type User = {
-    uid: string;
-    email?: string;
-    role: string;
-};
+export interface User {
+    id: string,
+    expiry_time: number,
+    email: string,
+    verified: boolean,
+    role: string,
+}
 
 export const authStore = derived<typeof page, User | null>(
     page,

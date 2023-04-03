@@ -1,20 +1,21 @@
 <script lang="ts">
 
 	import MenuItem from '$lib/components/navigation/MenuItem.svelte';
-    
-    const admin = true;
+	import { logout } from '$lib/firebase/utils';
+	export let data
 
 </script>
 
 
-<div id="main" class="flex h-full">
+<div id="main" class="flex h-full" class:green="{data.admin}">
 	<div id="side-menu">
 		<div id="mobile">
 			<MenuItem path="/app" faIcon="fa-solid fa-rocket" label="Home"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
+			<MenuItem path="/app/admin/utilizatori" faIcon="fa-solid fa-user" label="Utilizatori"/>
 		</div>
 		<div class="hidden sm:block">
-			<button class="items-end">Logout</button>
+			<button class="items-end w-full" on:click={()=> logout()}>Logout</button>
 		</div>
 	</div>
 
@@ -27,12 +28,17 @@
 </div>
 
 <style lang="postcss">
+
+	.green {
+		@apply border-violet-500 border-t-4
+	}
+
 	#content-area {
 		@apply w-full sm:ml-48;
 	}
 
 	#side-menu {
-		@apply z-10 fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 pt-3 pb-6;
+		@apply fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 pt-3 pb-6;
 		@apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 

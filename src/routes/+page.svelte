@@ -25,6 +25,7 @@
 
 		try {
 			const credential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+
 			return {
 				type: 'success',
 				status: 200,

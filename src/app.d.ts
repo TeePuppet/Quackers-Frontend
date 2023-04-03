@@ -7,6 +7,7 @@ declare namespace App {
 			uid: string;
 			email?: string;
 			role?:string;
+			verified?:boolean;
 		};
 	}
 	// interface PageData {}
