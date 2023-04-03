@@ -12,6 +12,5 @@ export const handle = (async ({ event, resolve }) => {
             event.locals.user = decodedToken
         }
     }
-
     return resolve(event);
 }) satisfies Handle;

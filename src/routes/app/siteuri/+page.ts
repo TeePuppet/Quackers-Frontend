@@ -1,17 +1,14 @@
-
-// import { database } from "$lib/firebase/client";
-import { collection, getDocs } from "firebase/firestore";
+import { loadWebsites } from "$lib/stores/websites";
 
 
-
-// /** @type {import('./$types').PageLoad} */
-// export async function load(event) {
-//     // let userData:[any]
-//     const querySnapshot = await getDocs(collection(database, "websites"));
-//     const websites = querySnapshot.docs.map(doc => doc.data())
-
-//     // console.log(event.locals)
-//     return {
-//         websites
-//     }
-// }
+/** @type {import('./$types').PageLoad} */
+export async function load({parent}) {
+    const { user } = await parent();
+    if(user) {
+        const userID = user.uid
+        let admin = false
+        if(user.role === "duke_of_quack") admin = true
+        const websites = await loadWebsites(admin, userID)
+        return { websites }
+    }
+}
