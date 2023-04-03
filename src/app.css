@@ -13,7 +13,7 @@ body {
 
 /* General Styles */
 input, select, textarea {
-    @apply mb-3 px-4 py-3 rounded outline-none border bg-zinc-800 border-zinc-700;
+    @apply mb-3 px-3 py-2 rounded outline-none border bg-zinc-800 border-zinc-700;
     @apply focus:border-white focus:border-solid ;
 }
 
@@ -21,13 +21,10 @@ textarea {
     @apply h-44
 }
 button, [type='button'], [type='reset'], [type='submit'] {
-    @apply z-0 block px-4 py-2 rounded outline-none border border-white opacity-40 text-white hover:opacity-95 transition;
+    @apply z-0 block text-sm px-3 py-2 rounded outline-none border border-white opacity-40 text-white hover:opacity-95 transition;
 }
 
 h1 {
     @apply text-2xl font-bold
 }
 
-button.small {
-    @apply text-sm px-3;
-}

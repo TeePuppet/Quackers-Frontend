@@ -8,7 +8,7 @@
     
 </script>
 
-<div class="input-wrap">
+
     <!-- svelte-ignore a11y-label-has-associated-control -->
     {#if label !== ""}
     <label class="block text-sm font-semibold mb-1">{label}</label>
@@ -19,7 +19,7 @@
     {#if type === "textArea"}
         <textarea class={extraClass} placeholder={placeholder} bind:value={value} />
     {/if}
-</div>
+
 
 <!-- <style lang="postcss">
     .input-wrap {

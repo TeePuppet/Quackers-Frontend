@@ -13,6 +13,7 @@
     let postTitle:string
     let product: string
     let products:{link:string}[] = []
+    let introducere:string
     $:prod = products
 
     const addProduct = () => {
@@ -42,24 +43,31 @@
             <span>Postari</span>
             <Modal action="Postare Noua">
                 <div slot="header">
-                    <h2>Adauga o postare noua</h2>
+                    <h2 class="font-semibold">Adauga o postare noua</h2>
                 </div>
                 <div slot="content">
-                    <Input extraClass="w-full border-0" placeholder="e.g. Top 10. Cele mai bune frigidere" bind:value={postTitle}/>
-                    <Input type="textArea" extraClass="w-full text-sm" label="Introducere" placeholder="e.g. Top 10. Cele mai bune frigidere" bind:value={postTitle}/>
-
-                    
-                    <div class="flex justify-between items-center border-b pb-2 border-zinc-700 mb-3">
-                        <h2 class="font-semibold text-lg">Top Produse</h2>
-                        <button class="small" on:click={addProduct}>Adauga Produs</button>
+                    <Input extraClass="w-full border-0 text-sm" placeholder="Titlu postare" bind:value={postTitle}/>
+                    <button class="w-full small mb-2">Genereaza Introducere</button>
+                    {#if introducere}
+                    <Input type="textArea" extraClass="w-full text-sm" placeholder="e.g. Top 10. Cele mai bune frigidere" bind:value={postTitle}/>
+                    {/if}
+                    <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
+                    {#if prod.length > 0}
+                        {#each prod as product, i}
+                        <div>{i+1}, {product.link}</div>
+                        {/each}
+                        {:else}
+                        <div>Nu ai nici un produs adaugat in top</div>
+                        {/if}
+                    <div class="flex gap-2 justify-between items-center">
+                        <Input extraClass="w-full text-sm m-0" placeholder="Link eMag" bind:value={product}/>
+                        <button class="small" on:click={addProduct}>Adauga</button>
                     </div>
-                    <Input extraClass="w-full" label="Link eMag" placeholder="LinkEmag" bind:value={product}/>
-                    {#each prod as product}
-                        <div>{product.link}</div>
-                    {/each}
+                    
+
                 </div>
 
-            <div slot="footer">
+            <div slot="footer" class="mt-6">
                 <button class="small w-full">Adauga Postare</button>
             </div>
             </Modal>
