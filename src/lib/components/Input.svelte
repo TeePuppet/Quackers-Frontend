@@ -14,10 +14,10 @@
     <label class="block text-sm font-semibold mb-1">{label}</label>
     {/if}
     {#if type === "input"}
-        <input class={extraClass} placeholder={placeholder} bind:value={value} />
+        <input class={extraClass} placeholder={placeholder} bind:value={value} autocomplete="off" />
     {/if}
     {#if type === "textArea"}
-        <textarea class={extraClass} placeholder={placeholder} bind:value={value} />
+        <textarea class={extraClass} placeholder={placeholder} bind:value={value}  autocomplete="off"/>
     {/if}
 
 
