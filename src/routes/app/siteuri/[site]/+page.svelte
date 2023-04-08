@@ -68,7 +68,7 @@
                         {#if postIntroduction}
                             <div role="textbox" contenteditable bind:innerHTML={postIntroduction}></div>
                             {:else}
-                            <p class="text-zinc-400 mt-3 focus:outline-none text-center mx-20">Completeaza <b>titlul</b> de mai sus si genereaza o introducere.</p>
+                            <p class="text-zinc-400 mt-3 focus:outline-none text-center mx-2">Completeaza <b>titlul</b> de mai sus si genereaza o introducere.</p>
                             <button class="small mb-3" on:click={generateTitleDescription}>Genereaza introducere</button>                            
                         {/if}
                         </div>
