@@ -16,7 +16,6 @@ export interface Website {
 export const Websites = writable<Website[]>([])
 
 
-
 export const loadWebsites = async (admin:boolean, userID:string) => {
 
     try {
