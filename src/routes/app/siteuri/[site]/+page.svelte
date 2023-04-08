@@ -64,10 +64,15 @@
                     </div>
                     <div slot="content">
                         <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={postTitle}/>
+                        <div class="flex flex-col gap-3 items-center rounded border border-dashed border-zinc-700 px-3 py-3 mb-3">
                         {#if postIntroduction}
-                        <div class="py-2" role="textbox" contenteditable bind:innerHTML={postIntroduction}></div>
+                            <div role="textbox" contenteditable bind:innerHTML={postIntroduction}></div>
+                            {:else}
+                            <p class="text-zinc-400 mt-3 focus:outline-none text-center mx-20">Completeaza <b>titlul</b> de mai sus si genereaza o introducere.</p>
+                            <button class="small mb-3" on:click={generateTitleDescription}>Genereaza introducere</button>                            
                         {/if}
-                        <button class="w-full small mb-2" on:click={generateTitleDescription}>Genereaza Introducere</button>
+                        </div>
+                        
                         <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
                         <ProductCard/>
                         {#if prod.length > 0}

@@ -23,6 +23,6 @@ export const generateDescription = async (title:string) => {
 //? Helpers
 //? ********
 
-const getEMAGProductData = async (url:string) => {
-    
-}
+// const getEMAGProductData = async (url:string) => {
+
+// }
