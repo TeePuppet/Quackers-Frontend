@@ -74,7 +74,109 @@
                         </div>
                         
                         <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
-                        <ProductCard/>
+                        <div class="productList">
+                            <ProductCard 
+                                position={1} 
+                                title="Samsung TX23125123" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={1} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={2} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={3} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={4} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={5} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={6} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={7} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={8} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={9} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+                            <ProductCard 
+                                position={10} 
+                                title="GRUNDING" 
+                                images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
+                                description="Descriere..." 
+                                price="12,5" 
+                                pros={["Pros 1"]}
+                                cons={["Cons 1"]}
+                            />
+
+                        </div>
+
                         {#if prod.length > 0}
                             {#each prod as product, i}
                             <div>{i+1}. {product.link}</div>
@@ -91,7 +193,7 @@
                     </div>
     
                 <div slot="footer" class="mt-6">
-                    <button class="small w-full" on:click={closeModal}>Adauga Postare</button>
+                    <!-- <button class="small w-full" on:click={closeModal}>Adauga Postare</button> -->
                 </div>
                 </Modal>
             </div>
@@ -119,6 +221,10 @@
 </PageLayout>
 
 <style lang="postcss">
+
+    .productList {
+        @apply flex flex-col gap-2;
+    }
     #tabs {
         @apply flex;
     }

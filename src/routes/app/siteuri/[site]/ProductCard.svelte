@@ -1,48 +1,70 @@
-<div class=" py-3">
-     <h3 class=" font-semibold focus:outline-none" contenteditable>1. Titlu</h3>
+<script lang="ts">
 
-    <div class="hScrollCards no-scrollbar">
-        <img class="imgCard" src="https://placehold.co/600x400"/>
-        <img class="imgCard" src="https://placehold.co/600x400"/>
-        <img class="imgCard" src="https://placehold.co/600x400"/>
-        <img class="imgCard" src="https://placehold.co/600x400"/>
+    export let position:number
+    export let title:string
+    export let images:string[]
+    export let description: string
+    export let price:string
+    export let pros: [string]
+    export let cons: [string]
+
+    let collapsed = true
+
+    const toggle = () => {
+        let button = collapsed
+        if(button) collapsed = false
+        if(!button) collapsed = true
+    }
+</script>
+<div class="productCard">
+
+
+    <div class="flex justify-between items-center"> 
+        <h3 class="font-semibold focus:outline-none" contenteditable>{position}. {title}</h3>
+        <button on:click={toggle}>{#if collapsed} Show {:else} Hide {/if} </button>
     </div>
     
 
-    <div>
+    <div class:hidden={collapsed}>
+    <div class="hScrollCards no-scrollbar">
+        {#each images as image }
+            <img class="imgCard" src={image}/>
+        {/each}
+    </div>
+
+   
         <p class="text-sm focus:outline-none" contenteditable>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu. A scelerisque purus semper eget duis at tellus at urna. Accumsan sit amet nulla facilisi morbi tempus iaculis urna
+            {description}   
         </p>
 
         <div class="hScrollCards no-scrollbar">
             <div class="textCard">
                 <h3 class="font-semibold">Pro</h3>
                 <ul class="text-sm" contenteditable>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Lorem ipsum dolor sit amet ipsum dolor sit ame</li>
+                    {#each pros as pro}
+                        <li>{pro}</li>
+                    {/each}
                 </ul>
             </div>
 
             <div class="textCard">
                 <h3>Contra</h3>
                 <ul class="text-sm" contenteditable>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Lorem ipsum dolor sit amet ipsum dolor sit ame</li>
+                    {#each cons as con}
+                    <li>{con}</li>
+                    {/each}
                 </ul>
             </div>
 
         </div>
         <div class="price">
-            234.99 <span>LEI</span>
+            {price} <span>LEI</span>
         </div>
     </div>
 
 </div>
 
 <style>
-
     .price {
         @apply w-full border rounded-md text-center py-3; 
     }
@@ -55,5 +77,9 @@
 
     .imgCard {
         @apply flex-none overflow-hidden h-36 object-cover aspect-[7/8] rounded-md snap-always snap-center;
+    }
+
+    .productCard {
+        @apply border rounded border-dashed border-zinc-700 px-3 py-3;
     }
 </style>
