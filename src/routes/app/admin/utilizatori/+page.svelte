@@ -8,6 +8,7 @@
 	$: newUser = {
 		email: ""
 	}
+	console.log($Users)
 </script>
 <PageLayout pageTitle="Utilizatori">
 	<div slot="topBar">
@@ -15,7 +16,7 @@
 			<div slot="header">Adauga un Utilizator</div>
 			<div slot="content">
 				<input placeholder="Email Address" bind:value={newUser.email}/>
-				
+
 			</div>
 		</Modal>
 	</div>

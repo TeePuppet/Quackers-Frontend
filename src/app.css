@@ -31,3 +31,13 @@ h2 {
     @apply text-lg font-semibold
 }
 
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display:none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}

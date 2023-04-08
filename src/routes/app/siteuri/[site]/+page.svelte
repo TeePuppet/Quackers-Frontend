@@ -9,27 +9,37 @@
 	import Input from "$lib/components/Input.svelte";
 	import Tabs from "$lib/components/Tabs.svelte";
 	import TabContent from "$lib/components/TabContent.svelte";
+	import { generateDescription } from "$lib/utils/website";
+	import ProductCard from "./ProductCard.svelte";
 
-
+    // Tabs
     let tabs = ["Postari", "Categorii"]
     let selectedTab:string = "Postari"
     const tabChange = (event:CustomEvent) => {
         selectedTab = event.detail
     }
 
+    // Modal
     let modal: boolean
+    const closeModal = () => modal = false
+
+    // Postare
     let postTitle:string
+    let postIntroduction:string
+
     let product: string
     let products:{link:string}[] = []
-    let introducere:string
     $:prod = products
 
-    const closeModal = () => modal = false
-    const addProduct = () => {
-        products = [...products, {link:product}]
-        product = ""
-        console.log(products)
+
+    const generateTitleDescription = async () => {
+        postIntroduction = await generateDescription(postTitle) as string
     }
+    const addProduct = () => {
+        products = [...products, {link:product}];
+        product = "";
+    }
+
 </script>
 
 <PageLayout pageTitle = "Pagina Site">
@@ -48,7 +58,37 @@
     {#if selectedTab === "Postari"}
         <TabContent title={selectedTab}>
             <div slot="action">
-                <button>Postare Noua</button>
+                <Modal action="Postare Noua" bind:isOpen={modal}>
+                    <div slot="header">
+                        <h2 class="font-semibold">Adauga o postare noua</h2>
+                    </div>
+                    <div slot="content">
+                        <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={postTitle}/>
+                        {#if postIntroduction}
+                        <div class="py-2" role="textbox" contenteditable bind:innerHTML={postIntroduction}></div>
+                        {/if}
+                        <button class="w-full small mb-2" on:click={generateTitleDescription}>Genereaza Introducere</button>
+                        <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
+                        <ProductCard/>
+                        {#if prod.length > 0}
+                            {#each prod as product, i}
+                            <div>{i+1}. {product.link}</div>
+                            {/each}
+                            {:else}
+                            <div class="text-center border rounded-md border-dashed border-zinc-600 py-5 mb-2">Nu ai nici un produs adaugat in top</div>
+                            {/if}
+                        <div class="flex gap-2 justify-between items-center">
+                            <Input extraClass="w-full m-0" placeholder="Link eMag" bind:value={product}/>
+                            <button class="small" on:click={addProduct}>Adauga</button>
+                        </div>
+                        
+    
+                    </div>
+    
+                <div slot="footer" class="mt-6">
+                    <button class="small w-full" on:click={closeModal}>Adauga Postare</button>
+                </div>
+                </Modal>
             </div>
             <div slot="content">
                 <Row> Titlu Postare </Row>
@@ -56,7 +96,9 @@
                 <Row> Titlu Postare </Row>
                 <Row> Titlu Postare </Row>
             </div>
-        </TabContent>        
+        </TabContent>      
+        
+        
     {:else if selectedTab === "Categorii"}
         <TabContent title={selectedTab}>
             <div slot="action">
@@ -68,45 +110,7 @@
             </div>
         </TabContent>  
     {/if}
-    <!-- <div id="Postari">
-        <div class=" bg-zinc-900 flex justify-between items-center px-4 py-2">
-            <span>Postari</span>
-            <Modal action="Postare Noua" bind:isOpen={modal}>
-                <div slot="header">
-                    <h2 class="font-semibold">Adauga o postare noua</h2>
-                </div>
-                <div slot="content">
-                    <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={postTitle}/>
-                    <button class="w-full small mb-2">Genereaza Introducere</button>
-                    {#if introducere}
-                    <Input type="textArea" extraClass="w-full" placeholder="e.g. Top 10. Cele mai bune frigidere" bind:value={postTitle}/>
-                    {/if}
-                    <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
-                    {#if prod.length > 0}
-                        {#each prod as product, i}
-                        <div>{i+1}, {product.link}</div>
-                        {/each}
-                        {:else}
-                        <div>Nu ai nici un produs adaugat in top</div>
-                        {/if}
-                    <div class="flex gap-2 justify-between items-center">
-                        <Input extraClass="w-full m-0" placeholder="Link eMag" bind:value={product}/>
-                        <button class="small">Adauga</button>
-                    </div>
-                    
 
-                </div>
-
-            <div slot="footer" class="mt-6">
-                <button class="small w-full" on:click={closeModal}>Adauga Postare</button>
-            </div>
-            </Modal>
-        </div>
-        <Row> Titlu Postare </Row>
-        <Row> Titlu Postare </Row>
-        <Row> Titlu Postare </Row>
-        <Row> Titlu Postare </Row>
-    </div> -->
 </PageLayout>
 
 <style lang="postcss">

@@ -37,6 +37,7 @@
 		"firebase": "^9.18.0",
 		"firebase-admin": "^11.5.0",
 		"lodash": "^4.17.21",
+		"openai": "^3.2.1",
 		"uuid": "^9.0.0"
 	}
 }
