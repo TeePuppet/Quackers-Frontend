@@ -12,12 +12,21 @@
 	import { generateDescription } from "$lib/utils/website";
 	import ProductCard from "./ProductCard.svelte";
 
+    let website = $Websites.find(site => site.id === $page.params.site)
+    let tops = website.tops
+    let posts = website.posts
+    let reviews = website.reviews
+    let categories = website.categories
+
+
     // Tabs
-    let tabs = ["Topuri", "Recenzii", "Postari", "Categorii", "Testam un alt tab"]
+    let tabs = ["Topuri", "Recenzii", "Postari", "Categorii"]
     let selectedTab:string = "Topuri"
     const tabChange = (event:CustomEvent) => {
         selectedTab = event.detail
     }
+
+    console.log(website)
 
     // Modal
     let modal: boolean
@@ -42,18 +51,20 @@
 
 </script>
 
-<PageLayout pageTitle = "Pagina Site">
+<PageLayout pageTitle = {website.name}>
     <div slot="topBar">
         <Modal action="Setari">
         </Modal>
     </div>
     <div class="">
-        <h2>Nume Site</h2>
-        <p>Github.url</p>
+        <h2>{website.name}</h2>
+        <p>{website.github}</p>
     </div>
 
     <Tabs {tabs} {selectedTab} on:tabChange={tabChange}/>
 
+    <!-- * TOPURI -->
+    <!-- * ****** -->
     {#if selectedTab === "Topuri"}
         <TabContent title={selectedTab}>
             <div slot="action">
@@ -183,33 +194,59 @@
     
                     </div>
     
-                <div slot="footer" class="mt-6">
-                    <!-- <button class="small w-full" on:click={closeModal}>Adauga Postare</button> -->
-                </div>
+                    <div slot="footer" class="mt-6">
+                        <!-- <button class="small w-full" on:click={closeModal}>Adauga Postare</button> -->
+                    </div>
                 </Modal>
             </div>
             <div slot="content">
-                <Row> Titlu Postare </Row>
-                <Row> Titlu Postare </Row>
-                <Row> Titlu Postare </Row>
-                <Row> Titlu Postare </Row>
+                {#each tops as top }
+                    <Row> {top.title} </Row>
+                {/each}
             </div>
         </TabContent>      
+    
+    <!-- * CATEGORII -->
+    <!-- * ****** -->
     {:else if selectedTab === "Categorii"}
         <TabContent title={selectedTab}>
             <div slot="action">
                 <button>Categorie Noua</button>
             </div>
             <div slot="content">
-                <Row> Categorie </Row>
-                <Row> Categorie </Row>
+               {#each categories as category }
+                <Row>{category}</Row>
+               {/each}
             </div>
         </TabContent>  
+    
+    <!-- * POSTARI -->
+    <!-- * ****** -->
     {:else if selectedTab === "Postari"}
         <TabContent title={selectedTab}>
+            <div slot="action">
+                <button>Postare Noua</button>
+            </div>
+
+            <div slot="content">
+               {#each posts as post }
+                <Row>{post.title}</Row>
+               {/each}
+            </div>
         </TabContent>
-    {:else if selectedTab === "Recenzii"}
+
+        <!-- * RECENZII -->
+        <!-- * ****** -->
+        {:else if selectedTab === "Recenzii"}
         <TabContent title={selectedTab}>
+            <div slot="action">
+                <button>Recenzie Noua</button>
+            </div>
+            <div slot="content">
+               {#each reviews as review }
+                <Row>{review.title}</Row>
+               {/each}
+            </div>
         </TabContent>
     {/if}
 

@@ -1,5 +1,5 @@
 import { db } from "$lib/firebase/client";
-import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, where } from "firebase/firestore";
 import { writable } from "svelte/store";
 // import randomUUID from "crypto";
 
@@ -13,7 +13,13 @@ export interface Website {
     categories: any,
 }
 
-export const Websites = writable<Website[]>([])
+export const Websites = writable<any[]>([])
+
+
+onSnapshot(collection(db, "websites"), (snapshot) => {
+    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    Websites.set(data);
+});
 
 
 export const loadWebsites = async (admin:boolean, userID:string) => {
