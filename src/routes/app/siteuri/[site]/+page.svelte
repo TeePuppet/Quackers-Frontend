@@ -13,8 +13,8 @@
 	import ProductCard from "./ProductCard.svelte";
 
     // Tabs
-    let tabs = ["Postari", "Categorii"]
-    let selectedTab:string = "Postari"
+    let tabs = ["Topuri", "Recenzii", "Postari", "Categorii", "Testam un alt tab"]
+    let selectedTab:string = "Topuri"
     const tabChange = (event:CustomEvent) => {
         selectedTab = event.detail
     }
@@ -45,7 +45,6 @@
 <PageLayout pageTitle = "Pagina Site">
     <div slot="topBar">
         <Modal action="Setari">
-
         </Modal>
     </div>
     <div class="">
@@ -55,10 +54,10 @@
 
     <Tabs {tabs} {selectedTab} on:tabChange={tabChange}/>
 
-    {#if selectedTab === "Postari"}
+    {#if selectedTab === "Topuri"}
         <TabContent title={selectedTab}>
             <div slot="action">
-                <Modal action="Postare Noua" bind:isOpen={modal}>
+                <Modal action="Top Nou" bind:isOpen={modal}>
                     <div slot="header">
                         <h2 class="font-semibold">Adauga o postare noua</h2>
                     </div>
@@ -66,8 +65,11 @@
                         <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={postTitle}/>
                         <div class="flex flex-col gap-3 items-center rounded border border-dashed border-zinc-700 px-3 py-3 mb-3">
                         {#if postIntroduction}
-                            <div role="textbox" contenteditable bind:innerHTML={postIntroduction}></div>
+                            <div role="textbox" contenteditable bind:innerHTML={postIntroduction}></div>                            
                             {:else}
+                            {#await postIntroduction}
+                                <p>Loading</p>
+                            {/await}
                             <p class="text-zinc-400 mt-3 focus:outline-none text-center mx-2">Completeaza <b>titlul</b> de mai sus si genereaza o introducere.</p>
                             <button class="small mb-3" on:click={generateTitleDescription}>Genereaza introducere</button>                            
                         {/if}
@@ -80,7 +82,6 @@
                                 title="Samsung TX23125123" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -89,7 +90,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -98,7 +98,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -107,7 +106,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -116,7 +114,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -125,7 +122,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -134,7 +130,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -143,7 +138,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -152,7 +146,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -161,7 +154,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -170,7 +162,6 @@
                                 title="GRUNDING" 
                                 images={["https://placehold.co/600x400", "https://placehold.co/600x400", "https://placehold.co/600x400"]}
                                 description="Descriere..." 
-                                price="12,5" 
                                 pros={["Pros 1"]}
                                 cons={["Cons 1"]}
                             />
@@ -204,8 +195,6 @@
                 <Row> Titlu Postare </Row>
             </div>
         </TabContent>      
-        
-        
     {:else if selectedTab === "Categorii"}
         <TabContent title={selectedTab}>
             <div slot="action">
@@ -216,6 +205,12 @@
                 <Row> Categorie </Row>
             </div>
         </TabContent>  
+    {:else if selectedTab === "Postari"}
+        <TabContent title={selectedTab}>
+        </TabContent>
+    {:else if selectedTab === "Recenzii"}
+        <TabContent title={selectedTab}>
+        </TabContent>
     {/if}
 
 </PageLayout>

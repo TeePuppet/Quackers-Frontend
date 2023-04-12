@@ -4,7 +4,6 @@
     export let title:string
     export let images:string[]
     export let description: string
-    export let price:string
     export let pros: [string]
     export let cons: [string]
 
@@ -32,7 +31,6 @@
         {/each}
     </div>
 
-   
         <p class="text-sm focus:outline-none" contenteditable>
             {description}   
         </p>
@@ -57,9 +55,7 @@
             </div>
 
         </div>
-        <div class="price">
-            {price} <span>LEI</span>
-        </div>
+
     </div>
 
 </div>
