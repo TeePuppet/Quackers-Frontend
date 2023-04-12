@@ -1,6 +1,7 @@
 <script lang="ts">
     export let action = "Open Modal";
     export let isOpen = false
+    export let actionIcon = ""
     function openModal() {
       isOpen = true
     }
@@ -13,7 +14,9 @@
 
 <slot name="trigger" {open}>
     <!-- fallback trigger to open the modal -->
-    <button class="small" on:click={openModal}>{action}</button>
+    <button class="small" on:click={openModal}>{#if actionIcon !== ""}
+      <i class={actionIcon}></i>
+    {/if}{action}</button>
   </slot>
   
   {#if isOpen}

@@ -53,7 +53,7 @@
 
 <PageLayout pageTitle = {website.name}>
     <div slot="topBar">
-        <Modal action="Setari">
+        <Modal action="" actionIcon="fa-solid fa-gear">
         </Modal>
     </div>
     <div class="">
