@@ -23,9 +23,9 @@
     }
 
     .tabs li {
-        @apply border border-zinc-800 text-center px-3 py-2 hover:cursor-pointer flex-none rounded-md snap-always snap-center;;
+        @apply border border-zinc-900 text-center px-3 py-2 hover:cursor-pointer flex-none rounded-md snap-always snap-start;
     }
     .active {
-        @apply bg-zinc-900 border-white;
+        @apply bg-zinc-900;
     }
 </style>
