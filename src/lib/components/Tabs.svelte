@@ -7,7 +7,7 @@
 </script>
 
 <div class="tabs">
-    <ul>
+    <ul class="no-scrollbar"> 
         {#each tabs as tab}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <li on:click={() => dispatch('tabChange', tab)} class:active={tab === selectedTab}>
@@ -26,6 +26,6 @@
         @apply border border-zinc-800 text-center px-3 py-2 hover:cursor-pointer flex-none rounded-md snap-always snap-center;;
     }
     .active {
-        @apply bg-zinc-900 border-zinc-400;
+        @apply bg-zinc-900 border-white;
     }
 </style>
