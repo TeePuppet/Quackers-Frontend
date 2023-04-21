@@ -12,7 +12,6 @@
 		<div id="mobile">
 			<MenuItem path="/app" faIcon="fa-solid fa-rocket" label="Home"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
-			<MenuItem path="/app/admin/utilizatori" faIcon="fa-solid fa-user" label="Utilizatori"/>
 		</div>
 		<div class="hidden sm:block">
 			<button class="items-end w-full" on:click={()=> logout()}>Logout</button>
@@ -29,17 +28,13 @@
 
 <style lang="postcss">
 
-	.green {
-		@apply border-violet-500 border-t-4
-	}
-
 	#content-area {
 		@apply w-full sm:ml-48;
 	}
 
 	#side-menu {
-		@apply fixed bottom-0 w-full border-t bg-black border-zinc-800 px-4 pt-3 pb-6;
-		@apply sm:left-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
+		@apply fixed left-1/2 -translate-x-1/2 bottom-4 bg-zinc-900 rounded-full border border-zinc-800 px-8 pt-2 pb-1 sm:px-2;
+		@apply  sm:rounded-none sm:left-0 sm:bottom-0 sm:-translate-x-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 
 	#side-menu #mobile {

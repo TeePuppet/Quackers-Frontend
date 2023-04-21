@@ -72,7 +72,7 @@
     }
 
     .imgCard {
-        @apply flex-none overflow-hidden h-36 object-cover aspect-[7/8] rounded-md snap-always snap-center;
+        @apply flex-none overflow-hidden h-36 object-cover aspect-square rounded-md snap-always snap-center;
     }
 
     .productCard {

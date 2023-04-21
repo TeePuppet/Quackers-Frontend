@@ -3,7 +3,6 @@ import { derived } from 'svelte/store';
 
 export interface User {
     id: string,
-    expiry_time: number,
     email: string,
     verified: boolean,
     role: string,

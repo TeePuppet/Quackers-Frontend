@@ -1,64 +1,45 @@
 <script lang="ts">
-	import PageLayout from "$lib/components/layout/PageLayout.svelte";
-    import Modal from "$lib/components/Modal.svelte";
+	import Input from "$lib/components/Input.svelte";
+    import PageLayout from "$lib/components/layout/PageLayout.svelte";
+	import Loading from "$lib/components/Loading.svelte";
+	import Modal from "$lib/components/Modal.svelte";
     import Row from "$lib/components/Row.svelte";
-    import { addWebsiteToDatabase  } from "$lib/firebase/utils";
-	import { Websites, type Website } from "$lib/stores/websites";
-	import { onDestroy, onMount } from "svelte";
-	import { v4 as uuidv4 } from "uuid";
-    import { page } from '$app/stores';
+    import { websites } from '$lib/stores/websites';
 
-    export let data 
-    console.log(data)
-    let websites = $Websites
-    let isAdmin = true
-    // Websites.subscribe(value => console.log("server",value))
-   
-    // $Websites
-    // console.log($Websites)
-
-
-    let websiteData: Website = {
-        id: uuidv4(),
-        name: "",
-        github: "",
-        owner: $page.data.user.uid,
-        posts: [],
-        moderator: [],
-        categories: [],
-    };
-
-    // const addSite = async() => await addWebsiteToDatabase(websiteData.uid, websiteData)
-
-    // onDestroy(unsubscribe)
-
+    let nume:string
+    const adaugaSite = async () => {
+        console.log(adaugaSite)
+    }
 </script>
 
-<PageLayout pageTitle="Site'uri">
-
+{#if $websites}
+    <PageLayout pageTitle="Site'uri">
         <div slot="topBar">
-            {#if isAdmin}
-            <Modal action="Adauga un site">
-                <h1 slot="header">Adauga un site nou</h1>
+            <Modal action="Adauga Site">
+                <div slot="header">
+                    <h2>Adauga un site nou</h2>
+                </div>
                 <div slot="content">
-                <input class="w-full" placeholder="Nume site" bind:value={websiteData.name}>
-                <input class="w-full" placeholder="URL Github Repo" bind:value={websiteData.github}>
+                    <Input extraClass="w-full" label="Nume Site" placeholder="Adauga un nume site'ului" bind:value={nume}/>
+                    <Input extraClass="w-full" label="Selecteaza tipul site'ului" placeholder="Selecteaza tipul site'ului" bind:value={nume}/>
+                    <h2>Setari</h2>
+                    <Input extraClass="w-full" label="Culoare Principala" placeholder="#232323" bind:value={nume}/>
+                    <Input extraClass="w-full" label="Culoare Secundara" placeholder="#232323" bind:value={nume}/>
+                    <Input extraClass="w-full" label="Logo" placeholder="Selecteaza logo" bind:value={nume}/>
                 </div>
                 <div slot="footer">
-                    <!-- <button on:click={addSite}>Adauga site</button> -->
+                    <button on:click={adaugaSite}>Adauga Site</button>
                 </div>
             </Modal>
-            {/if}
         </div>
+                {#each $websites as website }
+                    <Row url="siteuri/{website.id}">
+                        <span>{website.name}</span>
+                    </Row>
+                {/each}
+    </PageLayout>
+{:else}
+<Loading/>
+{/if}
 
-
-    <div class="flex flex-col gap-2">
-        {#each $Websites as website }
-            <Row url="siteuri/{website.id}">
-                <span>{website.name}</span>
-            </Row>
-        {/each}
-    </div>
-
-</PageLayout>
 

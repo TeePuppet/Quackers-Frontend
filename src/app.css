@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body, html {
-    @apply bg-black bg-gradient-to-b text-zinc-300 antialiased
+    @apply bg-zinc-900 bg-gradient-to-b text-zinc-300 antialiased
 }
 
 body {
@@ -39,5 +39,20 @@ h2 {
     .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+    }
+}
+
+
+@layer components {
+    .responsive-p-x {
+        @apply px-4 sm:px-8;
+    }
+
+    .responsive-p-y {
+        @apply py-4 sm:py-8 ;
+    }
+
+    .light-border {
+        @apply border-white border-opacity-5;
     }
 }

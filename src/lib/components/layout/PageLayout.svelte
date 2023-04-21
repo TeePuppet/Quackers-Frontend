@@ -21,14 +21,10 @@
 </div>
 
 <style lang="postcss">
-    #content {
-        @apply px-4 py-5;
-        @apply sm:px-12 sm:py-4;
-    }
 
 	#top-bar {
-		@apply sticky top-0 flex justify-between items-center px-4 py-2 bg-black;
-		@apply border-b border-zinc-800 sm:px-12 sm:py-2;
+		@apply sticky top-0 flex justify-between items-center px-4 py-2 bg-white bg-opacity-5;
+		@apply border-b border-zinc-800 sm:px-8 sm:py-2;
 	}
 
 </style>

@@ -30,7 +30,8 @@
             <!-- fallback -->
                 <h1>Your Modal Heading Goes Here...</h1>
             </slot>
-            <button class="small" on:click={closeModal}>Inchide</button>
+            
+            <button class="small border-opacity-20" on:click={closeModal}><i class="fa-solid fa-xmark"></i></button>
         </div>
   
         <div class="content">
@@ -59,13 +60,13 @@
     }
   
     div.content-wrapper {
-      @apply fixed mt-14 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg border-t border-zinc-700;
+      @apply fixed mt-6 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg border-t border-zinc-700;
     }
     div.content {
       @apply  overflow-y-scroll px-6 pt-4 ;
     }
   
     div.header {
-      @apply bg-zinc-900 border-b border-b-zinc-800 px-6 pt-3 pb-3 flex justify-between items-center;
+      @apply sticky top-0 z-10 bg-zinc-900 border-b border-b-zinc-800 px-6 pt-3 pb-3 flex justify-between items-center;
     }
   </style>

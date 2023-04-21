@@ -3,7 +3,7 @@ import { decodeToken } from '$lib/firebase/admin';
 import { SESSION_COOKIE_NAME } from '$lib/constants';
 
 export const handle = (async ({ event, resolve }) => {
-    const { cookies } = event
+    const cookies = event.cookies
     const token = cookies.get(SESSION_COOKIE_NAME)
 
     if (token) {
