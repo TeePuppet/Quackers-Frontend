@@ -22,6 +22,8 @@ export const generateDescription = async (title:string) => {
 //? Helpers
 //? ********
 
-// const getEMAGProductData = async (url:string) => {
-
-// }
+export const getEMAGProductData = async (url:string) => {
+    const productData = await fetch(`https://us-central1-recenzii-c1726.cloudfunctions.net/getProductData?url=${url}`)
+    
+    return productData.json()
+}
