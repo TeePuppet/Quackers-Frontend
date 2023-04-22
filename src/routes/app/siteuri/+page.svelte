@@ -5,16 +5,18 @@
 	import Modal from "$lib/components/Modal.svelte";
     import Row from "$lib/components/Row.svelte";
     import { websites } from '$lib/stores/websites';
+	// import { createSite } from "$lib/utils/siteuri";
 
     let nume:string
     const adaugaSite = async () => {
-        console.log(adaugaSite)
+        // await createSite('Recenzii', 'Test2')
     }
 </script>
 
 {#if $websites}
-    <PageLayout pageTitle="Site'uri">
-        <div slot="topBar">
+    <PageLayout>
+        <div class="flex gap-2" slot="topBar">
+            <a href="siteuri/setari" class="px-2 py-2"><i class="fa-solid fa-gear"></i></a>
             <Modal action="Adauga Site">
                 <div slot="header">
                     <h2>Adauga un site nou</h2>

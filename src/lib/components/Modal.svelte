@@ -1,5 +1,6 @@
 <script lang="ts">
     export let action = "Open Modal";
+    import { fly } from 'svelte/transition';
     export let isOpen = false
     export let actionIcon = ""
     function openModal() {
@@ -8,8 +9,10 @@
     export const closeModal = () => {
       isOpen = false
     }    
-  </script>
+  
 
+
+</script>
 
 
 <slot name="trigger" {open}>
@@ -20,11 +23,11 @@
   </slot>
   
   {#if isOpen}
-    <div class="modal">
+    <div class="modal" out:fly={{ y: 100, duration: 100 }}>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="backdrop" on:click={closeModal} />
   
-      <div class="content-wrapper">
+      <div class="content-wrapper" in:fly={{ y: 100, duration: 300 }}>
         <div class="header">
             <slot name="header">
             <!-- fallback -->
@@ -56,11 +59,11 @@
       @apply z-20 fixed top-0 left-0 w-full h-screen flex justify-center items-center;
     }
     div.backdrop {
-      @apply w-full h-full absolute bg-black bg-opacity-60;
+      @apply w-full h-full absolute bg-black bg-opacity-30 backdrop-blur-[2px];
     }
   
     div.content-wrapper {
-      @apply fixed mt-6 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg border-t border-zinc-700;
+      @apply fixed mt-12 top-0 left-0 bottom-0 overflow-auto w-full bg-zinc-900 z-10 rounded-t-lg;
     }
     div.content {
       @apply  overflow-y-scroll px-6 pt-4 ;

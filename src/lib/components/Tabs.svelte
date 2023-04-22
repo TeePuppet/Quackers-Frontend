@@ -20,13 +20,13 @@
 
 <style lang="postcss">
     .tabs ul {
-        @apply flex text-sm flex-nowrap gap-1 overflow-x-auto snap-x snap-mandatory py-2;
+        @apply flex text-sm flex-nowrap gap-1 overflow-x-auto snap-x snap-mandatory pt-2 border-b border-white border-opacity-5;
     }
 
     .tabs li {
-        @apply border border-zinc-800 border-opacity-60 text-center px-3 py-2 hover:cursor-pointer flex-none rounded-md snap-always snap-start;
+        @apply text-center px-4 pt-2 pb-4 hover:cursor-pointer flex-none rounded-md snap-always snap-start text-zinc-500 hover:text-white
     }
     li.active {
-        @apply border-opacity-20 border-amber-400 text-amber-400 bg-amber-400 bg-opacity-5;
+        @apply rounded-none border-b border-white text-white;
     }
 </style>

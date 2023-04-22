@@ -5,7 +5,7 @@
 	import Input from "$lib/components/Input.svelte";
 	import Tabs from "$lib/components/Tabs.svelte";
 	import TabContent from "$lib/components/TabContent.svelte";
-	import { generateDescription, getEMAGProductData } from "$lib/utils/website";
+	import { generateDescription, getEMAGProductData } from "$lib/utils/siteuri";
 	import ProductCard from "./ProductCard.svelte";
     import { selectedWebsite } from '$lib/stores/websites';
 	import Row from "$lib/components/Row.svelte";
@@ -61,7 +61,7 @@
 </script>
 
 {#if $selectedWebsite}
-<PageLayout pageTitle = "{$selectedWebsite.name}">
+<PageLayout>
 
         <Tabs {tabs} bind:activeTab={activeTab}/>
 

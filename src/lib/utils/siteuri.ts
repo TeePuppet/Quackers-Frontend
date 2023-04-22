@@ -1,10 +1,17 @@
-import { PUBLIC_OPENAI_KEY } from "$env/static/public";
+import { PUBLIC_GIT_KEY, PUBLIC_OPENAI_KEY}  from "$env/static/public";
 import {Configuration, OpenAIApi} from "openai";
+
 
 const configuration = new Configuration({
     apiKey: PUBLIC_OPENAI_KEY,
 });
+
+// const octokit = new Octokit({
+//     auth: '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'
+//   });
+
 const openai = new OpenAIApi(configuration);
+
 
 
 export const generateDescription = async (title:string) => {
