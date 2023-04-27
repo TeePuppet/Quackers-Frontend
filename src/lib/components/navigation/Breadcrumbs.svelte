@@ -3,6 +3,9 @@
 
     $: currentRoute = $page.route.id
     $: routes = $page.route.id?.split('/')!
+    
+    // $: routes = $page.route.id?.split('/')!.filter(route => route !== "app" && route !== "")
+    $: console.log(routes)
 
     
 </script>

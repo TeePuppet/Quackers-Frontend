@@ -12,7 +12,6 @@
 		<div id="mobile">
 			<MenuItem path="/app" faIcon="fa-solid fa-rocket" label="Home"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
-			<MenuItem path="/app/admin/settings" faIcon="fa-solid fa-gear" label="Settings"/>
 		</div>
 		<div class="hidden sm:block">
 			<button class="items-end w-full" on:click={()=> logout()}>Logout</button>

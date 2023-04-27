@@ -7,9 +7,9 @@
 	import TabContent from "$lib/components/TabContent.svelte";
 	import { generateDescription, getEMAGProductData } from "$lib/utils/siteuri";
 	import ProductCard from "./ProductCard.svelte";
-    import { selectedWebsite } from '$lib/stores/websites';
 	import Row from "$lib/components/Row.svelte";
 	import Loading from "$lib/components/Loading.svelte";
+	import { selectedWebsite } from "$lib/stores/siteuri/siteuri";
 
     // $: reviews = $selectedWebsite.reviews
     // let categories = website.categories
@@ -71,9 +71,7 @@
             <TabContent title={activeTab}>
                 <div slot="action">
                     <Modal action="Top Nou" bind:isOpen={modal}>
-                        <div slot="header">
-                            <h2 class="font-semibold">Adauga o postare noua</h2>
-                        </div>
+
                         <div slot="content">
                             <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={titlu}/>
                             <div class="flex flex-col gap-3 items-center rounded border border-dashed border-zinc-700 px-3 py-3 mb-3">
@@ -111,10 +109,8 @@
                             
         
                         </div>
-        
-                        <div slot="footer" class="mt-6">
-                            <button class="small w-full" on:click={closeModal}>Adauga Top</button>
-                        </div>
+                        
+                        <button class="small w-full" on:click={closeModal}>Adauga Top</button>
                     </Modal>
                 </div>
                 <div slot="content">

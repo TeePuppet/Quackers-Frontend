@@ -3,26 +3,21 @@
 @tailwind utilities;
 
 body, html {
-    @apply bg-zinc-900 bg-gradient-to-b text-zinc-300 antialiased
-}
-
-body {
-    @apply h-full
+    @apply h-full bg-background text-white antialiased relative;
 }
 
 
 /* General Styles */
 input, select, textarea {
-    @apply mb-3 px-3 py-2 rounded outline-none border bg-zinc-800 border-zinc-700;
-    @apply focus:border-white focus:border-solid ;
+    @apply block w-full rounded-md border-0 bg-white/5 py-1.5 px-3 text-white shadow-sm sm:text-sm sm:leading-6;
 }
 
 textarea {
     @apply h-44
 }
-button, [type='button'], [type='reset'], [type='submit'] {
+/* button, [type='button'], [type='reset'], [type='submit'] {
     @apply z-0 block text-sm px-3 py-2 rounded outline-none border border-white opacity-40 text-white hover:opacity-95 transition;
-}
+} */
 
 h1 {
     @apply text-2xl font-bold

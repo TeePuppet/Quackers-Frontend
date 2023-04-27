@@ -2,6 +2,6 @@
 	import PageLayout from "$lib/components/layout/PageLayout.svelte";
 
 </script>
-<PageLayout pageTitle="Admin">
+<PageLayout>
     Pagina Admin
 </PageLayout>
