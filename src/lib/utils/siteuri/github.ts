@@ -28,3 +28,21 @@ export const createSiteFromTemplate = async (template:string, siteName:string) =
     }
 
 }
+
+export const deleteRepo = async (repo:string) => {
+    try{
+        const headers = {
+            'Accept': 'application/vnd.github+json',
+            'Authorization': `Bearer ${PUBLIC_GIT_KEY}`,
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+        const response = await fetch(repo, {
+        method: 'DELETE',
+        headers: headers,
+        });
+        
+        return response
+    } catch (err) {
+        console.error(err)
+    }
+}

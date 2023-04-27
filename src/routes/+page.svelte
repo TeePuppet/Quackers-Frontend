@@ -153,7 +153,7 @@
 		<input class="w-full max-w-sm" placeholder="Email Address" type="email" id="email" bind:value={email} required>
 		<input class="w-full max-w-sm" placeholder="Password" type="password" name="password" id="password" bind:value={password} required>
 		
-		<button class="w-full max-w-sm" on:click={login}>Login</button>
+		<button class="w-full max-w-sm" on:click={handleSubmi}>Login</button>
 	
 	
 	{#if state == 'verifying'}

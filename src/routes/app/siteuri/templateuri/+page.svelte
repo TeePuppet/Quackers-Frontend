@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Input from "$lib/components/Input.svelte";
+	import Input from "$lib/components/elements/inputs/Input.svelte";
 	import Loading from "$lib/components/Loading.svelte";
 	import Modal from "$lib/components/Modal.svelte";
 	import Row from "$lib/components/Row.svelte";
@@ -21,6 +21,7 @@
                 name: numeTemplate,
                 github: githubURL
             })
+            
             numeTemplate = "";
             githubURL = ""
             closeModal()
@@ -37,8 +38,8 @@
         <Modal actionIcon="fa-solid fa-plus" bind:isOpen={modal}>
             <div slot="content">
                 <h2>Adauga un template nou</h2>
-                <Input extraClass="w-full" placeholder="Nume template" bind:value={numeTemplate}/>
-                <Input extraClass="w-full" placeholder="Github URL" bind:value={githubURL}/>
+                <Input extraClass="w-full" label="Nume" placeholder="Nume template" bind:value={numeTemplate}/>
+                <Input extraClass="w-full" label="Github URL" placeholder="Github URL" bind:value={githubURL}/>
                 <Button on:click={addNewTemplate}>Adauga</Button>
         </Modal>
     </div>
@@ -50,7 +51,7 @@
                 <a href="templateuri/{template.id}"class="block border border-white border-opacity-20 px-4 py-4 rounded flex justify-between items-center hover:cursor-pointer hover:border-opacity-70">
                     <div>
                         <div>{template.name}</div>
-                        <div class="text-xs">{template.github}</div>
+                        <div class="text-xs text-white/40">{template.github}</div>
                     </div>
                     <div>
                         <i class="fa-solid fa-chevron-right"></i>

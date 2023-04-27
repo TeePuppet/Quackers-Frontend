@@ -2,7 +2,7 @@
 <script lang="ts">
 	import Modal from "$lib/components/Modal.svelte";
     import PageLayout from "$lib/components/layout/PageLayout.svelte";
-	import Input from "$lib/components/Input.svelte";
+	import Input from "$lib/components/elements/inputs/Input.svelte";
 	import Tabs from "$lib/components/Tabs.svelte";
 	import TabContent from "$lib/components/TabContent.svelte";
 	import { generateDescription, getEMAGProductData } from "$lib/utils/siteuri";
@@ -10,10 +10,11 @@
 	import Row from "$lib/components/Row.svelte";
 	import Loading from "$lib/components/Loading.svelte";
 	import { selectedWebsite } from "$lib/stores/siteuri/siteuri";
+	import Button from "$lib/components/elements/button/Button.svelte";
 
     // $: reviews = $selectedWebsite.reviews
     // let categories = website.categories
-
+    console.log($selectedWebsite)
 
     // Tabs
     let tabs = ["Topuri", "Categorii"]
@@ -61,7 +62,12 @@
 </script>
 
 {#if $selectedWebsite}
-<PageLayout>
+<PageLayout pageTitle={$selectedWebsite.name}>
+
+    <div slot="topBar">
+        <Button href="{$selectedWebsite.id}/setari"size="icon" style="outline"><i class="fa-solid fa-gear"></i></Button>
+    </div>
+
 
         <Tabs {tabs} bind:activeTab={activeTab}/>
 
@@ -114,9 +120,9 @@
                     </Modal>
                 </div>
                 <div slot="content">
-                    {#each $selectedWebsite.data.topuri as top }
+                    <!-- {#each $selectedWebsite.data.topuri as top }
                         <Row> {top.titlu}</Row>
-                    {/each}
+                    {/each} -->
                 </div>
             </TabContent>      
         

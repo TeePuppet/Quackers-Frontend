@@ -59,7 +59,7 @@
     }
 
     .outline {
-        @apply bg-white/10  hover:bg-white/20 outline-amber-100
+        @apply bg-white/5  hover:bg-white/20 outline-white/10
     }
 </style>
 

@@ -1,6 +1,6 @@
 import { page } from "$app/stores";
 import { db } from "$lib/firebase/client";
-import { addDoc, collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { derived, writable, type Writable } from "svelte/store";
 
 export interface WebsiteTemplate {
@@ -31,4 +31,12 @@ export const addTemplate = async (data:WebsiteTemplate) => {
 export const deleteTemplate = async (id:string) => {
     const docRef = doc(db, "/websites/templates/data", id);
     await deleteDoc(docRef)
+}
+
+
+export const updateTemplate =async (id:string , data:any) => {
+    const docRef = doc(db, "/websites/templates/data", id);
+    await updateDoc(docRef, data);
+
+
 }
