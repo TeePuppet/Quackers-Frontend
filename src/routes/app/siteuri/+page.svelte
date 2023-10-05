@@ -8,6 +8,7 @@
     import { addWebsite, websites } from '$lib/stores/siteuri/siteuri';
 	import { templates } from "$lib/stores/siteuri/templates";
 	import { createSiteFromTemplate } from "$lib/utils/siteuri/github";
+	import { deployWebsite } from "$lib/utils/siteuri/vercel.js";
     export let data
     let uid = data.uid
 
@@ -18,11 +19,24 @@
     let siteName:string = ""
     let template: any
     const adaugaSite = async () => {
-        const siteFromTemplate = await createSiteFromTemplate(template.githubTemplate, siteName)
+        const github = await createSiteFromTemplate(template.githubTemplate, siteName)
+        const vercel = await deployWebsite(siteName, github.full_name, github.id)
+        console.log(github)
+        console.log(vercel)
         await addWebsite({
             name: siteName,
-            github: siteFromTemplate.url,
-            githubHTML: siteFromTemplate.html_url,
+            github: {
+                default_branch: github.default_branch,
+                repo: github.full_name,
+                id: github.id,
+                api: github.url,
+                url: github.html_url
+            },
+            vercel: {
+                projectId: vercel.projectId,
+                vercelURL: vercel.alias[0],
+                domain: vercel.alias[0]
+            },
             template: template.id,
             status: "Pending",
             owner: uid,
@@ -31,6 +45,9 @@
         })
         closeModal()
     }
+
+    const addSite = adaugaSite()
+    $: console.log($websites)
 </script>
 
 {#if $websites}
@@ -40,11 +57,10 @@
             <div class="flex items-center gap-2">
                 <Button href="siteuri/templateuri" size="icon"><i class="fa-solid fa-brush"></i></Button>
                 <Modal actionIcon="fa-solid fa-plus" bind:isOpen={modal}>
-
                     <div slot="content">
                         <Input extraClass="w-full" label="Nume Site" placeholder="Adauga un nume site'ului" bind:value={siteName}/>
                         <div class="mb-3">
-                            <label class="block text-sm font-semibold text-white/40 mb-1">Selecteaza un Template</label>
+                            <span class="block text-sm font-semibold text-white/40 mb-1">Selecteaza un Template</span>
                             <select class="w-full" bind:value={template}>
                                 {#if $templates}
                                     {#each $templates as template}
@@ -56,7 +72,6 @@
                             </select>
                         </div>
 
-
                         <Button size="lg" on:click={adaugaSite}>Adauga Site</Button>
                     </div>
 
@@ -65,9 +80,10 @@
         </div>
         <div class="responsive-p-x">
                 {#each $websites as website }
+
                     <Row url="siteuri/{website.id}">
-                        <span>{website.status}</span>
                         <span>{website.name}</span>
+                        <span>{website.status}</span>
                     </Row>
                 {/each}
         </div>

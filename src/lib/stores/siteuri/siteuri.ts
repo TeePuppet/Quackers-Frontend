@@ -8,8 +8,18 @@ import type { WebsiteTemplate } from "./templates";
 export interface Website {
     id?: string,
     name: string,
-    github: string,
-    githubHTML:string,
+    github: {
+        default_branch: string,
+        repo: string,
+        id: string,
+        api: string,
+        url: string
+    },
+    vercel: {
+        projectId: string | null,
+        vercelURL: string | null,
+        domain:string | null
+    },
     template: string,
     status: string,
     owner: string | undefined,

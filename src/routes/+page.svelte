@@ -94,7 +94,7 @@
 				<label>
 					Email
 					<input
-						class="block border border-gray-400 rounded py-1 px-2 mt-2 mb-4 w-full"
+						class="block text-black border rounded py-1 px-2 mt-2 mb-4 w-full"
 						name="email"
 						type="email"
 						required
@@ -105,7 +105,7 @@
 				<label>
 					Password
 					<input
-						class="block border border-gray-400 rounded py-1 px-2 mt-2 mb-4 w-full"
+						class="block text-black border rounded py-1 px-2 mt-2 mb-4 w-full"
 						name="password"
 						type="password"
 						required

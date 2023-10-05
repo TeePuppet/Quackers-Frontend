@@ -17,7 +17,6 @@
 
 
 <slot name="trigger" {open}>
-    <!-- fallback trigger to open the modal -->
     {#if actionIcon !== ""}
       <Button size="icon" style="primary" on:click={openModal}>
         <i class="{actionIcon}"></i>
@@ -27,23 +26,23 @@
         {action}
       </Button>
     {/if}
-  </slot>
+</slot>
   
   {#if isOpen}
     <div class="modal" out:fly={{ y: 100, duration: 100 }}>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div class="backdrop" on:click={closeModal} />
-  
-      <div class="content-wrapper" in:fly={{ y: 100, duration: 300 }}>
-        <div class="absolute top-4 right-4">
-        <Button size="icon-sm" on:click={closeModal}><i class="fa-solid fa-xmark"></i></Button>
-      </div>
-        <div class="content mt-12">
-          <slot name="content" />
-        </div>
-  
+          <div class="backdrop" on:click={closeModal} />
+      
+          <div class="content-wrapper" in:fly={{ y: 100, duration: 300 }}>
+            <div class="absolute top-4 right-4">
+            <Button size="icon-sm" on:click={closeModal}><i class="fa-solid fa-xmark"></i></Button>
+          </div>
+          <div class="content mt-12">
+            <slot name="content"/>
+          </div>
+      
 
-      </div>
+          </div>
 
     </div>
   {/if}

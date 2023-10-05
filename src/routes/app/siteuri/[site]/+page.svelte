@@ -11,6 +11,7 @@
 	import Loading from "$lib/components/Loading.svelte";
 	import { selectedWebsite } from "$lib/stores/siteuri/siteuri";
 	import Button from "$lib/components/elements/button/Button.svelte";
+	import { deployWebsite } from "$lib/utils/siteuri/vercel";
 
     // $: reviews = $selectedWebsite.reviews
     // let categories = website.categories
@@ -57,17 +58,33 @@
         console.log(produs)
     }
 
-
+    const publishWebsite =async () => {
+        await deployWebsite($selectedWebsite!.name, $selectedWebsite!.github.url.replace("https://github.com/", ""), $selectedWebsite?.github.id! )
+    }
+    $: console.log($selectedWebsite)
 
 </script>
 
 {#if $selectedWebsite}
-<PageLayout pageTitle={$selectedWebsite.name}>
+<PageLayout contentClass="responsive-p-x" pageTitle={$selectedWebsite.name}>
 
     <div slot="topBar">
         <Button href="{$selectedWebsite.id}/setari"size="icon" style="outline"><i class="fa-solid fa-gear"></i></Button>
     </div>
 
+    <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center mb-2">
+        <i class="fa-brands fa-github"></i>
+        {$selectedWebsite.github.url}
+       
+    </div>
+
+    <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center justify-between">
+        
+        {$selectedWebsite.status}
+
+        {$selectedWebsite.vercel.domain}
+       
+    </div>
 
         <Tabs {tabs} bind:activeTab={activeTab}/>
 
@@ -77,7 +94,6 @@
             <TabContent title={activeTab}>
                 <div slot="action">
                     <Modal action="Top Nou" bind:isOpen={modal}>
-
                         <div slot="content">
                             <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={titlu}/>
                             <div class="flex flex-col gap-3 items-center rounded border border-dashed border-zinc-700 px-3 py-3 mb-3">
@@ -107,7 +123,7 @@
                             </div>
 
 
-                            <div class="flex gap-2 justify-between items-center">
+                            <div class="flex gap-2 justify-between items-center w-full">
 
                                     <Input extraClass="w-full m-0" placeholder="Link eMag" bind:value={linkProdus}/>
                                     <button class="small" on:click={productData}>Adauga</button>
