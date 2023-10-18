@@ -22,7 +22,7 @@ $: console.log($selectedWebsite)
 </script>
 
 {#if $selectedWebsite}
-<PageLayout contentClass="responsive-p-x pb-28" pageTitle="{$selectedWebsite.name} / Setari">
+<PageLayout contentClass="responsive-p-x" pageTitle="{$selectedWebsite.name} / Setari">
     <div slot="topBar">
         <Modal action="Delete Site">
             <div slot="content" class="text-center">

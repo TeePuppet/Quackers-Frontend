@@ -30,7 +30,7 @@
     
 {/if}
 
-<div id="content" class="{contentClass}">
+<div id="content" class="{contentClass} pb-28">
     <slot></slot>
 </div>
 
