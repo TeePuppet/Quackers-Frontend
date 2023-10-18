@@ -22,7 +22,7 @@ $: console.log($selectedWebsite)
 </script>
 
 {#if $selectedWebsite}
-<PageLayout contentClass="responsive-p-x" pageTitle="{$selectedWebsite.name} / Setari">
+<PageLayout contentClass="responsive-p-x pb-28" pageTitle="{$selectedWebsite.name} / Setari">
     <div slot="topBar">
         <Modal action="Delete Site">
             <div slot="content" class="text-center">
@@ -35,7 +35,8 @@ $: console.log($selectedWebsite)
     <Input label="Nume Site" placeholder="Adauga un nume site'ului" value="{$selectedWebsite.name}"/>
     <Input label="github.url" placeholder="github.url" value="{$selectedWebsite.github.url}"/>
     <Input label="Moderator" placeholder="Adauga un moderator" value="{$selectedWebsite.name}"/>
-
+    
+    <!-- Content Types -->
     <div class="flex justify-between align-middle mb-2">
         <h2>Content Types</h2>
         <Modal action="Add">
@@ -49,7 +50,14 @@ $: console.log($selectedWebsite)
     <Row>Test</Row>
     <Row>Test</Row>
     <Row>Test</Row>
+    <Row>Test</Row>
+    <Row>Test</Row>
+    <Row>Test</Row>
+    <Row>Test</Row>
+    <Row>Test</Row>
+    <Row>Test</Row>
 
+    <Button>Salveaza Modificarile</Button>
 
 
 </PageLayout>
