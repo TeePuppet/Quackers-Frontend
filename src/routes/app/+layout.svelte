@@ -33,7 +33,7 @@
 	}
 
 	#side-menu {
-		@apply fixed left-1/2 -translate-x-1/2 bottom-7 bg-zinc-900 rounded-full border border-zinc-800 px-8 pt-2 pb-1 sm:px-2;
+		@apply fixed left-1/2 -translate-x-1/2 bottom-6 bg-zinc-900 rounded-full border border-zinc-800 px-8 pt-2 pb-1 sm:px-2;
 		@apply  sm:rounded-none sm:left-0 sm:bottom-0 sm:-translate-x-0 sm:border-r sm:h-full sm:flex sm:flex-col sm:justify-between sm:w-48;
 	}
 
