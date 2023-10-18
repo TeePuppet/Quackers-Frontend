@@ -2,10 +2,9 @@
 	import { applyAction, deserialize } from '$app/forms';
 	import { goto, invalidateAll } from '$app/navigation';
 	import type { ActionResult } from '@sveltejs/kit';
-	import { getAuth, signInWithEmailAndPassword, type User, type UserCredential } from 'firebase/auth';
+	import { signInWithEmailAndPassword, type UserCredential } from 'firebase/auth';
 	import { onMount } from 'svelte';
 	import { authStore } from '$lib/stores/auth';
-	// import type { ActionData } from './$types';
 	import { auth } from '$lib/firebase/client';
 	import type { ActionData } from './$types';
 
@@ -18,6 +17,7 @@
 	});
 
 	const login = async (email: string | undefined, password: string | undefined ): Promise<ActionResult<{ credential: UserCredential }, Record<string, string>>> => {
+		
 		if (!email || !password) {
 			return { type: 'failure', status: 400, data: { message: 'Email or password are missing' } };
 		}
@@ -41,6 +41,7 @@
 	};
 
 	async function handleSubmit(this: HTMLFormElement, event: unknown): Promise<void> {
+
 		const formData = new FormData(this);
 
 		const email = formData.get('email')?.toString();
@@ -50,12 +51,14 @@
 			const loginResult = await login(email, password);
 
 			if (loginResult.type !== 'success') { 
+				
 				applyAction(loginResult);
 				return;
 			}
-
+			
 			const { data } = loginResult;
 			if (!data?.credential) {
+				
 				throw new Error('Login returned success but no user credential data');
 			}
 
@@ -70,6 +73,7 @@
 			const result = deserialize(await response.text());
 
 			if (result.type === 'success') { await invalidateAll();}
+			
 		} catch (error) {
 			applyAction({
 				type: 'error',
@@ -82,7 +86,7 @@
 
 
 <div class="container mt-8 mx-auto">
-	<div class="w-1/3 mx-auto">
+	<div class="sm:max-w-1/3 w-full mx-auto px-4">
 		{#if form && !form.success && form.message}
 			<div class="text-red-700">
 				{form.message}
@@ -115,7 +119,7 @@
 
 			<div>
 				<button
-					class="block mx-auto bg-indigo-700 hover:bg-indigo-600 text-gray-200 hover:text-white rounded py-2 px-4"
+					class="block sm:w-full w-full bg-indigo-700 hover:bg-indigo-600 text-gray-200 hover:text-white rounded py-2 px-4"
 					type="submit"
 				>
 					Submit
@@ -124,43 +128,3 @@
 		</form>
 	</div>
 </div>
-
-<!-- <script lang="ts">
-	// import { emailAndPasswordSignIn } from "$lib/firebase/client";
-
-	type FormState = 'idle' | 'verifying' | Error;
-	let state: FormState;
-	let email:string;
-	let password: string
-
-	const login =async () => {
-		try {
-			state = 'verifying';
-			// const { res, err } = await emailAndPasswordSignIn(email, password);
-
-			// if (err) throw new Error(err);        
-		} catch (error) {
-			state = error as Error;
-		}
-	}
-
-</script>
-
-<div class="h-full py-6 px-6 flex flex-col justify-start box-border sm:justify-center sm:items-center">
-
-	
-	
-		<input class="w-full max-w-sm" placeholder="Email Address" type="email" id="email" bind:value={email} required>
-		<input class="w-full max-w-sm" placeholder="Password" type="password" name="password" id="password" bind:value={password} required>
-		
-		<button class="w-full max-w-sm" on:click={handleSubmi}>Login</button>
-	
-	
-	{#if state == 'verifying'}
-		<p>Logging in, please wait...</p>
-	{:else if state instanceof Error}
-		<p>Unable to login, please try again.</p>
-	{/if}
-	
-</div> -->
-

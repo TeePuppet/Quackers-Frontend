@@ -1,4 +1,4 @@
-import { PUBLIC_GIT_KEY, PUBLIC_OPENAI_KEY}  from "$env/static/public";
+import { PUBLIC_OPENAI_KEY}  from "$env/static/public";
 import {Configuration, OpenAIApi} from "openai";
 
 
@@ -31,6 +31,5 @@ export const generateDescription = async (title:string) => {
 
 export const getEMAGProductData = async (url:string) => {
     const productData = await fetch(`https://us-central1-recenzii-c1726.cloudfunctions.net/getProductData?url=${url}`)
-    
     return productData.json()
 }

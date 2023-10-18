@@ -1,5 +1,5 @@
 import { invalidateAll } from "$app/navigation";
-import type { Website } from "$lib/stores/websites";
+import type { Website } from "$lib/stores/siteuri/siteuri";
 
 import { signOut } from "firebase/auth";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";

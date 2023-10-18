@@ -15,8 +15,6 @@
 
     // $: reviews = $selectedWebsite.reviews
     // let categories = website.categories
-    console.log($selectedWebsite)
-
     // Tabs
     let tabs = ["Topuri", "Categorii"]
     let activeTab:string = "Topuri"
@@ -43,7 +41,7 @@
     const generateTitleDescription = async () => {
         introducere = await generateDescription(titlu) as string
     }
-
+    const test = "Testing Logpoints"
     const productData = async () => {
         produs = await getEMAGProductData(linkProdus)
         listaProduse.push({
@@ -55,7 +53,7 @@
         })
         listaProduse = listaProduse
         linkProdus = '';
-        console.log(produs)
+
     }
 
     const publishWebsite =async () => {
@@ -74,75 +72,18 @@
 
     <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center mb-2">
         <i class="fa-brands fa-github"></i>
-        {$selectedWebsite.github.url}
+        <a href="{$selectedWebsite.github.url}" target="_blank">{$selectedWebsite.github.url}</a>
        
     </div>
 
     <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center justify-between">
         
-        {$selectedWebsite.status}
 
-        {$selectedWebsite.vercel.domain}
-       
+        <a href="https://{$selectedWebsite.vercel.domain}" target="_blank">{$selectedWebsite.vercel.domain}</a>
+
     </div>
 
-        <Tabs {tabs} bind:activeTab={activeTab}/>
 
-        <!-- * TOPURI -->
-        <!-- * ****** -->
-        {#if activeTab === "Topuri"}
-            <TabContent title={activeTab}>
-                <div slot="action">
-                    <Modal action="Top Nou" bind:isOpen={modal}>
-                        <div slot="content">
-                            <Input extraClass="w-full border-0" placeholder="Titlu postare" bind:value={titlu}/>
-                            <div class="flex flex-col gap-3 items-center rounded border border-dashed border-zinc-700 px-3 py-3 mb-3">
-                            {#if introducere}
-                                <div role="textbox" contenteditable bind:innerHTML={introducere}></div>                            
-                                {:else}
-                                {#await introducere}
-                                    <p>Loading</p>
-                                {/await}
-                                <p class="text-zinc-400 mt-3 focus:outline-none text-center mx-2">Completeaza <b>titlul</b> de mai sus si genereaza o introducere.</p>
-                                <button class="small mb-3" on:click={generateTitleDescription}>Genereaza introducere</button>                            
-                            {/if}
-                            </div>
-                            
-                            <h2 class="font-semibold text-lg mb-2">Top Produse</h2>
-                            <div class="productList">
-                                {#each listaProduse as produs, i }
-                                    <ProductCard 
-                                        position={i+1} 
-                                        title={produs.titlu}
-                                        images={produs.imagini}
-                                        description={produs.descriere}
-                                        pros={produs.pro}
-                                        cons={produs.contra}
-                                    />
-                                {/each}
-                            </div>
-
-
-                            <div class="flex gap-2 justify-between items-center w-full">
-
-                                    <Input extraClass="w-full m-0" placeholder="Link eMag" bind:value={linkProdus}/>
-                                    <button class="small" on:click={productData}>Adauga</button>
-                            </div>
-                            
-        
-                        </div>
-                        
-                        <button class="small w-full" on:click={closeModal}>Adauga Top</button>
-                    </Modal>
-                </div>
-                <div slot="content">
-                    <!-- {#each $selectedWebsite.data.topuri as top }
-                        <Row> {top.titlu}</Row>
-                    {/each} -->
-                </div>
-            </TabContent>      
-        
-        {/if}
 
 
 </PageLayout>
@@ -152,11 +93,7 @@
 {/if}
 
 <style lang="postcss">
-
     .productList {
         @apply flex flex-col gap-2;
-    }
-    #tabs {
-        @apply flex;
     }
 </style>

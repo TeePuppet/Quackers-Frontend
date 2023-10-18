@@ -6,7 +6,7 @@
 	import Modal from "$lib/components/Modal.svelte";
     import Row from "$lib/components/Row.svelte";
     import { addWebsite, websites } from '$lib/stores/siteuri/siteuri';
-	import { templates } from "$lib/stores/siteuri/templates";
+	import { templates, selectedTemplateId, addTemplate, selectedTemplate } from "$lib/stores/siteuri/templates";
 	import { createSiteFromTemplate } from "$lib/utils/siteuri/github";
 	import { deployWebsite } from "$lib/utils/siteuri/vercel.js";
     export let data
@@ -18,36 +18,42 @@
 
     let siteName:string = ""
     let template: any
+
     const adaugaSite = async () => {
-        const github = await createSiteFromTemplate(template.githubTemplate, siteName)
-        const vercel = await deployWebsite(siteName, github.full_name, github.id)
-        console.log(github)
-        console.log(vercel)
-        await addWebsite({
-            name: siteName,
-            github: {
-                default_branch: github.default_branch,
-                repo: github.full_name,
-                id: github.id,
-                api: github.url,
-                url: github.html_url
-            },
-            vercel: {
-                projectId: vercel.projectId,
-                vercelURL: vercel.alias[0],
-                domain: vercel.alias[0]
-            },
-            template: template.id,
-            status: "Pending",
-            owner: uid,
-            moderator: [],
-            categories: [],
-        })
-        closeModal()
+        if ($selectedTemplate && $selectedTemplate.github) {
+            const github = await createSiteFromTemplate($selectedTemplate.github, siteName);
+            const vercel = await deployWebsite(siteName, github.full_name, github.id)
+            console.log(github)
+            console.log(vercel)
+            await addWebsite({
+                name: siteName,
+                github: {
+                    default_branch: github.default_branch,
+                    repo: github.full_name,
+                    id: github.id,
+                    api: github.url,
+                    url: github.html_url
+                },
+                vercel: {
+                    projectId: vercel.projectId,
+                    vercelURL: vercel.alias[0],
+                    domain: vercel.alias[0]
+                },
+                template: template.id,
+                status: "Pending",
+                owner: uid,
+                moderator: [],
+                categories: [],
+            })
+            closeModal()
+        } else {
+            console.error("Template is not defined or missing github property.");
+        }
+
+
     }
 
     const addSite = adaugaSite()
-    $: console.log($websites)
 </script>
 
 {#if $websites}
@@ -61,10 +67,10 @@
                         <Input extraClass="w-full" label="Nume Site" placeholder="Adauga un nume site'ului" bind:value={siteName}/>
                         <div class="mb-3">
                             <span class="block text-sm font-semibold text-white/40 mb-1">Selecteaza un Template</span>
-                            <select class="w-full" bind:value={template}>
+                            <select class="w-full" bind:value={$selectedTemplateId}>
                                 {#if $templates}
-                                    {#each $templates as template}
-                                        <option value={template}>{template.name}</option>
+                                    {#each $templates as templateItem}
+                                        <option value={templateItem.id}>{templateItem.name}</option>
                                     {/each}
                                 {:else}
                                     <option>Loading Templates...</option>

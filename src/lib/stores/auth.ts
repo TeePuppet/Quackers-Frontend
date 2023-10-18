@@ -1,5 +1,5 @@
-import { page } from '$app/stores';
-import { derived } from 'svelte/store';
+import { writable } from 'svelte/store';
+import { auth } from '$lib/firebase/client'; // Import your Firebase auth instance
 
 export interface User {
     id: string,
@@ -8,16 +8,21 @@ export interface User {
     role: string,
 }
 
-export const authStore = derived<typeof page, User | null>(
-    page,
-    ($page, set) => {
-        const { user } = $page.data;
-        if (!user) {
-            set(null);
-            return;
-        }
+// Create a writable Svelte store for the auth state
+export const authStore = writable<User | null>(null);
 
-        set(user);
-    },
-    null
-);
+// Listen to Firebase's onAuthStateChanged event
+auth.onAuthStateChanged(user => {
+    if (user) {
+        // User is signed in, update the Svelte store
+        authStore.set({
+            id: user.uid,
+            email: user.email || '',
+            verified: user.emailVerified,
+            role: 'user' // You might want to fetch the role from your database or set it based on some other logic
+        });
+    } else {
+        // User is signed out
+        authStore.set(null);
+    }
+});

@@ -1,7 +1,7 @@
 import { SESSION_COOKIE_NAME } from '$lib/constants';
 import { fail, redirect } from '@sveltejs/kit';
-import type { LayoutServerLoad } from './$types';
 import type { Actions } from './$types';
+import type { LayoutServerLoad } from './app/$types';
 
 export const load: LayoutServerLoad = async ({ locals }) => {
     if (locals.user) {
@@ -13,7 +13,7 @@ export const actions: Actions = {
     default: async ({ request, cookies }) => {
         const formData = await request.formData();
         const token = formData.get('token')?.valueOf();
-
+        console.log(formData)
         if (!token || typeof token !== 'string') {
             return fail(400, { message: 'Token is a required field and must be a string' });
         }
