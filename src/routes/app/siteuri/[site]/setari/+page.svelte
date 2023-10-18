@@ -7,6 +7,7 @@
     import Button from "$lib/components/elements/button/Button.svelte";
 	import Input from "$lib/components/elements/inputs/Input.svelte";
 	import PageLayout from "$lib/components/layout/PageLayout.svelte";
+	import Section from "$lib/components/layout/Section.svelte";
 	import { deleteWebsite, selectedWebsite } from "$lib/stores/siteuri/siteuri";
 	import { deleteRepo } from "$lib/utils/siteuri/github";
 	import { deleteVercelProject } from "$lib/utils/siteuri/vercel";
@@ -22,7 +23,7 @@ $: console.log($selectedWebsite)
 </script>
 
 {#if $selectedWebsite}
-<PageLayout contentClass="responsive-p-x" pageTitle="{$selectedWebsite.name} / Setari">
+<PageLayout contentClass="px-2" pageTitle="{$selectedWebsite.name} / Setari">
     <div slot="topBar">
         <Modal action="Delete Site">
             <div slot="content" class="text-center">
@@ -32,30 +33,37 @@ $: console.log($selectedWebsite)
         </Modal>
     </div>
 
-    <Input label="Nume Site" placeholder="Adauga un nume site'ului" value="{$selectedWebsite.name}"/>
-    <Input label="github.url" placeholder="github.url" value="{$selectedWebsite.github.url}"/>
-    <Input label="Moderator" placeholder="Adauga un moderator" value="{$selectedWebsite.name}"/>
+    <Section highlight={false}>
+        <Input label="Nume Site" placeholder="Adauga un nume site'ului" value="{$selectedWebsite.name}"/>
+        <Input label="github.url" placeholder="github.url" value="{$selectedWebsite.github.url}"/>
+        <Input label="Moderator" placeholder="Adauga un moderator" value="{$selectedWebsite.name}"/>
+    </Section>
+
     
     <!-- Content Types -->
-    <div class="flex justify-between align-middle mb-2">
-        <h2>Content Types</h2>
+    <div class="flex justify-between align-middle ">
+        <h3>Content Types</h3>
         <Modal action="Add">
             <div slot="content">
                 <p>Adauga Content Type</p>
             </div>
         </Modal>
     </div>
-    
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
-    <Row>Test</Row>
+    <Section>
+
+        
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+        <Row>Test</Row>
+    </Section>
+
 
     <Button>Salveaza Modificarile</Button>
 
