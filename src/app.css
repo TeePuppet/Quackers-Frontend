@@ -8,16 +8,30 @@ body, html {
 
 
 /* General Styles */
-input, textarea, select {
+input, textarea, select, 
+input[type='text'], 
+input:where(:not([type])), 
+input[type='email'], 
+input[type='url'], 
+input[type='password'], 
+input[type='number'], 
+input[type='date'], 
+input[type='datetime-local'], 
+input[type='month'], 
+input[type='search'], 
+input[type='tel'], 
+input[type='time'], 
+input[type='week'], 
+input[multiple]{
     @apply block w-full rounded-md border-0 py-2 px-3 bg-black/90 ring-1 ring-inset ring-white/20 placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm sm:leading-6;
 }
 
 textarea {
     @apply h-44
 }
-/* button, [type='button'], [type='reset'], [type='submit'] {
+button, [type='button'], [type='reset'], [type='submit'] {
     @apply z-0 block text-sm px-3 py-2 rounded outline-none border border-white opacity-40 text-white hover:opacity-95 transition;
-} */
+}
 
 h1 {
     @apply text-2xl font-bold

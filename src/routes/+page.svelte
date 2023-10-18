@@ -83,8 +83,6 @@
 	}
 </script>
 
-
-
 <div class="container mt-8 mx-auto">
 	<div class="sm:max-w-1/3 w-full mx-auto px-4">
 		{#if form && !form.success && form.message}
@@ -94,37 +92,19 @@
 		{/if}
 
 		<form class="mt-4" method="POST" on:submit|preventDefault={handleSubmit}>
+
 			<div>
-				<label>
-					Email
-					<input
-						class="block text-black border rounded py-1 px-2 mt-2 mb-4 w-full"
-						name="email"
-						type="email"
-						required
-					/>
-				</label>
-			</div>
-			<div>
-				<label>
-					Password
-					<input
-						class="block text-black border rounded py-1 px-2 mt-2 mb-4 w-full"
-						name="password"
-						type="password"
-						required
-					/>
-				</label>
+				<input class="mb-2" placeholder="Email" name="email" type="email" required />
 			</div>
 
 			<div>
-				<button
-					class="block sm:w-full w-full bg-indigo-700 hover:bg-indigo-600 text-gray-200 hover:text-white rounded py-2 px-4"
-					type="submit"
-				>
-					Submit
-				</button>
+				<input class="mb-2" placeholder="Password" name="password" type="password" required />
 			</div>
+
+			<div>
+				<button type="submit">Submit</button>
+			</div>
+
 		</form>
 	</div>
 </div>

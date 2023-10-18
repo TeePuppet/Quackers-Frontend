@@ -19,7 +19,7 @@
             <Button size="icon" on:click={() => history.back()}> <i class="fa-solid fa-chevron-left"></i></Button>
             <div>
                 <!-- <span class="text-xs"><Breadcrumbs/></span> -->
-                <span class=" ml-2 font-semibold block capitalize">{pageTitle}</span>
+                <span class=" ml-2 font-semibold block">{pageTitle}</span>
             </div>
 
         </div>
