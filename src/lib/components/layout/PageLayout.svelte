@@ -37,7 +37,7 @@
 <style lang="postcss">
 
 	#top-bar {
-		@apply sticky top-0 flex justify-between items-center;
+		@apply sticky top-0 flex justify-between items-center bg-black;
 	}
 
 </style>
