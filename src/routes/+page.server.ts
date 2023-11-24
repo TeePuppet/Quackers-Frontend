@@ -13,7 +13,6 @@ export const actions: Actions = {
     default: async ({ request, cookies }) => {
         const formData = await request.formData();
         const token = formData.get('token')?.valueOf();
-        console.log(formData)
         if (!token || typeof token !== 'string') {
             return fail(400, { message: 'Token is a required field and must be a string' });
         }

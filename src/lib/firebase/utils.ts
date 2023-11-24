@@ -8,7 +8,6 @@ import { auth, db } from "./client";
 
 export const logout = async () => {
     await signOut(auth);
-    await fetch('/api/logout', { method: 'POST' });
     await invalidateAll();
 }
 

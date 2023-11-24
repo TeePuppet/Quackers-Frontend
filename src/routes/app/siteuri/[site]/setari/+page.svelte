@@ -45,13 +45,14 @@ $: console.log($selectedWebsite)
         <h3>Content Types</h3>
         <Modal action="Add">
             <div slot="content">
-                <p>Adauga Content Type</p>
+                <Input label="Nume" placeholder="Adauga un nume site'ului" value=""/>
+                <Input label="Source path" placeholder="path/to/markdown" value=""/>
+                <p class="mb-2">Folder where the markdown (.md, .markdown) content is and will be stored</p>
+                <Button style="primary" customClass="w-full">Adauga</Button>
             </div>
         </Modal>
     </div>
     <Section>
-
-        
         <Row>Test</Row>
         <Row>Test</Row>
         <Row>Test</Row>

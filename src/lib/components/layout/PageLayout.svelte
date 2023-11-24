@@ -30,7 +30,7 @@
     
 {/if}
 
-<div id="content" class="{contentClass} pb-28 no-scrollbar">
+<div class="{contentClass} px-4 pb-28">
     <slot></slot>
 </div>
 

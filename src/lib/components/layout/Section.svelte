@@ -1,13 +1,13 @@
 <script lang="ts">
     export let highlight = true;
+    export let css = ""
+    let whiteBg:string = ""
 
-    let whiteBg = "bg-white/10";
-
-    if (!highlight) {
-        whiteBg = "";
+    if (highlight) {
+        whiteBg = "bg-white/5";
     }
 </script>
 
-<div class=" {whiteBg} rounded-md px-4 py-4">
+<div class="{whiteBg} {css} rounded-md px-4 py-4">
     <slot></slot>
 </div>

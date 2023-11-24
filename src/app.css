@@ -28,9 +28,9 @@ input[multiple]{
 textarea {
     @apply h-44
 }
-button, [type='button'], [type='reset'], [type='submit'] {
+/* button, [type='button'], [type='reset'], [type='submit'] {
     @apply z-0 block text-sm px-3 py-2 rounded outline-none border border-white opacity-40 text-white hover:opacity-95 transition;
-}
+} */
 
 h1 {
     @apply text-2xl font-bold

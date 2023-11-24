@@ -2,16 +2,17 @@
     export let size = "lg"
     export let style = "secondary"
     export let href = ""
+    export let customClass = ""
 </script>
 
 
 
 {#if href !== ""}
-    <a href={href} class="button flex items-center justify-center {size} {style}">
+    <a href={href} class="button flex items-center justify-center {size} {style} {customClass}">
         <slot></slot>
     </a>
 {:else}
-    <button type="button" class="button {size} {style}" on:click>
+    <button type="button" class="button {size} {style} {customClass}" on:click>
         <slot></slot>
     </button>
 {/if}

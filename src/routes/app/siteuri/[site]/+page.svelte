@@ -12,6 +12,8 @@
 	import { selectedWebsite } from "$lib/stores/siteuri/siteuri";
 	import Button from "$lib/components/elements/button/Button.svelte";
 	import { deployWebsite } from "$lib/utils/siteuri/vercel";
+	import Section from "$lib/components/layout/Section.svelte";
+    import QuillEditor from '$lib/components/QuillEditor.svelte';
 
     // $: reviews = $selectedWebsite.reviews
     // let categories = website.categories
@@ -70,19 +72,23 @@
         <Button href="{$selectedWebsite.id}/setari"size="icon" style="outline"><i class="fa-solid fa-gear"></i></Button>
     </div>
 
-    <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center mb-2">
-        <i class="fa-brands fa-github"></i>
-        <a href="{$selectedWebsite.github.url}" target="_blank">{$selectedWebsite.github.url}</a>
-       
-    </div>
+    <Section>
+        <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center mb-2">
+            <i class="fa-brands fa-github"></i>
+            <a href="{$selectedWebsite.github.url}" target="_blank">Github</a>
+        </div>
+    
+        <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center justify-between">
+            
+    
+            <a href="https://{$selectedWebsite.vercel.domain}" target="_blank">{$selectedWebsite.vercel.domain}</a>
+    
+        </div>
+    </Section>
 
-    <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center justify-between">
-        
-
-        <a href="https://{$selectedWebsite.vercel.domain}" target="_blank">{$selectedWebsite.vercel.domain}</a>
-
-    </div>
-
+    <Section>          
+            <QuillEditor />
+    </Section>
 
 
 
