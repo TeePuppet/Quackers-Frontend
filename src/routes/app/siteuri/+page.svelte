@@ -19,6 +19,8 @@
     let siteName:string = ""
     let template: any
 
+    $: console.log("Selected Template:", $selectedTemplate);
+    
     const adaugaSite = async () => {
         if ($selectedTemplate && $selectedTemplate.github) {
             const github = await createSiteFromTemplate($selectedTemplate.github, siteName);

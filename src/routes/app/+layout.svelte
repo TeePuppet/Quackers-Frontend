@@ -10,10 +10,7 @@
 <div id="main" class="flex h-full" class:green="{data.admin}">
 	<div id="side-menu">
 		<div id="mobile">
-			<MenuItem path="/app/etsy" faIcon="fa-brands fa-etsy" label="Etsy"/>
-			<MenuItem path="/app/merch" faIcon="fa-solid fa-rocket" label="Merch"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
-			<MenuItem path="/app/admin" faIcon="fa-solid fa-rocket" label="Test"/>
 		</div>
 		<div class="hidden sm:block">
 			<button class="items-end w-full" on:click={()=> logout()}>Logout</button>

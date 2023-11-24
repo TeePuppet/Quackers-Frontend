@@ -13,7 +13,7 @@
 	import Button from "$lib/components/elements/button/Button.svelte";
 	import { deployWebsite } from "$lib/utils/siteuri/vercel";
 	import Section from "$lib/components/layout/Section.svelte";
-    import QuillEditor from '$lib/components/QuillEditor.svelte';
+	import PostRow from "$lib/components/PostRow.svelte";
 
     // $: reviews = $selectedWebsite.reviews
     // let categories = website.categories
@@ -66,28 +66,21 @@
 </script>
 
 {#if $selectedWebsite}
-<PageLayout contentClass="responsive-p-x" pageTitle={$selectedWebsite.name}>
-
+<PageLayout contentClass="responsive-p-x" pageTitle='{$selectedWebsite.name}/{$selectedWebsite.vercel.domain}'>
     <div slot="topBar">
         <Button href="{$selectedWebsite.id}/setari"size="icon" style="outline"><i class="fa-solid fa-gear"></i></Button>
     </div>
 
-    <Section>
-        <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center mb-2">
-            <i class="fa-brands fa-github"></i>
-            <a href="{$selectedWebsite.github.url}" target="_blank">Github</a>
-        </div>
-    
-        <div class="bg-white/5 px-4 py-4 rounded-md text-white/40 text-sm flex gap-2 items-center justify-between">
-            
-    
-            <a href="https://{$selectedWebsite.vercel.domain}" target="_blank">{$selectedWebsite.vercel.domain}</a>
-    
-        </div>
-    </Section>
 
-    <Section>          
-            <QuillEditor />
+    Content Types
+
+    <!-- POSTARI -->
+    <Section>    
+
+        {#each Array(150) as _, index (index)}
+            <PostRow />
+	    {/each}
+
     </Section>
 
 
