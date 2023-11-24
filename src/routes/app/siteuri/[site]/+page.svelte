@@ -75,13 +75,13 @@
     Content Types
 
     <!-- POSTARI -->
-    <Section>    
+ 
 
         {#each Array(150) as _, index (index)}
             <PostRow />
 	    {/each}
 
-    </Section>
+
 
 
 
