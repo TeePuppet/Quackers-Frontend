@@ -10,7 +10,7 @@
 <div id="main" class="flex h-full" class:green="{data.admin}">
 	<div id="side-menu">
 		<div id="mobile">
-			<MenuItem path="/app/t-shirts" faIcon="fa-regular fa-rocket" label="T-Shirts"/>
+			<MenuItem path="/app/tricouri" faIcon="fa-solid fa-shirt" label="Tricouri"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
 			<MenuItem path="/app/videos" faIcon="fa-brands fa-youtube" label="Videos"/>
 		</div>
