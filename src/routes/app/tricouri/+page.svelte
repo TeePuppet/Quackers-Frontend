@@ -9,6 +9,9 @@
 	let modal: boolean;
 	const closeModal = () => (modal = false);
 
+
+	let searchKeyword:string
+
 	let channel = {
 		name: '',
 		youtube: '',
@@ -20,101 +23,33 @@
 
 	let keywords = [
 		{
-			keyword: "christmas",
-			competition: "32%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "doctor who",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "ajr",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "one piece",
-			competition: "32%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "five nights at freddies",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "anime",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "the office",
-			competition: "32%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "hoodies",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "lego",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "fnaf",
-			competition: "32%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "lord of the rings",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "cat",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "philadelphia eagles",
-			competition: "32%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "80s",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "demon slayer",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "friends",
-			competition: "32%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "bluey dad",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-		{
-			keyword: "simpson",
-			competition: "52%",
-			platform: "Tee Public"
-		},
-	]
-	
+			keyword: 'christmas',
+			competition: '32%',
+			also_search: [
+				'ugly christmas sweater',
+				'christmas movies',
+				'santa claus',
+				'cute christmas',
+				'elf matching',
+				'vintage christmas'
+			],
+			main_tag: 'christmas',
+			related_tags: [
+				'xmas',
+				'merry christmas',
+				'funny',
+				'birthday',
+				'gift',
+				'halloween',
+				'christmas gifts',
+				'holiday',
+				'santa'
+			]
+		}
+	];
 
-	let selected:any
-	$: selected = keywords[0]
-
+	let selected: any;
+	$: selected = keywords[0];
 </script>
 
 <PageLayout topBar={false}>
@@ -163,28 +98,31 @@
 		</div>
 	</div>
 	<div class="flex w-full gap-4">
-		<div class="w-2/5 h-full overflow-y-scroll">
+		<div class="mx-auto w-full max-w-2xl h-full overflow-y-scroll">
+			<Section css="mb-2">
+				<div class="">
+					<h2 class="mb-2">Research keyword</h2>
+					<Input placeholder="Search by keyword" bind:value="{searchKeyword}" />
+					<Button style="primary" customClass="w-full">Search</Button>
+				</div>
+			</Section>
 			<Section>
-				<div class="font-bold flex justify-between items-center px-4 py-2">
+				<div class="font-bold flex justify-between items-center text-sm px-4 py-2">
 					<p>Keyword</p>
 					<p>Competition</p>
 				</div>
 				{#each keywords as key, index}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<div class="flex justify-between border border-white/10 rounded-md items-center px-4 py-2 mb-2 hover:cursor-pointer hover:border-white/100" on:click={()=> selected = keywords[index]}>
+					<div
+						class="flex justify-between border border-white/10 rounded-md items-center px-4 py-2 mb-2 hover:cursor-pointer hover:border-white/100"
+						on:click={() => (selected = keywords[index])}
+					>
 						<p>{key.keyword}</p>
 						<p>{key.competition}</p>
 					</div>
 				{/each}
 			</Section>
 		</div>
-		<div class="w-3/5">
-			<Section>
-				<p>{selected.keyword}</p>
-				<p>{selected.competition}</p>
-			</Section>
-		</div>
-
 
 	</div>
 </PageLayout>
