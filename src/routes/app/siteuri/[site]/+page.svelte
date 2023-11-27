@@ -5,7 +5,7 @@
 	import Input from "$lib/components/elements/inputs/Input.svelte";
 	import Tabs from "$lib/components/Tabs.svelte";
 	import TabContent from "$lib/components/TabContent.svelte";
-	import { generateDescription, getEMAGProductData } from "$lib/utils/siteuri";
+	import { generateDescription, getEMAGProductData } from "$lib/utils/openai";
 	import ProductCard from "./ProductCard.svelte";
 	import Row from "$lib/components/Row.svelte";
 	import Loading from "$lib/components/Loading.svelte";

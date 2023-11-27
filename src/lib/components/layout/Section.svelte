@@ -4,10 +4,10 @@
     let whiteBg:string = ""
 
     if (highlight) {
-        whiteBg = "bg-white/5";
+        whiteBg = "bg-white/10";
     }
 </script>
 
-<div class="{whiteBg} {css} rounded-md px-4 py-4">
+<div class="{whiteBg} {css} rounded-md px-4 py-4 w-full">
     <slot></slot>
 </div>

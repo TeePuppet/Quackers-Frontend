@@ -6,12 +6,7 @@ const configuration = new Configuration({
     apiKey: PUBLIC_OPENAI_KEY,
 });
 
-// const octokit = new Octokit({
-//     auth: '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'
-//   });
-
 const openai = new OpenAIApi(configuration);
-
 
 
 export const generateDescription = async (title:string) => {
@@ -24,7 +19,6 @@ export const generateDescription = async (title:string) => {
     });
     return completion.data.choices[0].message?.content;
 }
-
 
 //? Helpers
 //? ********
