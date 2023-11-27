@@ -8,6 +8,6 @@
     }
 </script>
 
-<div class="{whiteBg} {css} rounded-md px-4 py-4 w-full">
+<div class="{whiteBg} {css} border border-white/5 rounded-md px-4 py-4 w-full">
     <slot></slot>
 </div>
