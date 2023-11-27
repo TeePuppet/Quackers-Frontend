@@ -107,7 +107,8 @@
 				</div>
 			</Section>
 			<Section>
-				<div class="font-bold flex justify-between items-center text-sm px-4 py-2">
+				<h2 class="mb-2">Trending on Tee Public</h2>
+				<div class="font-semibold flex justify-between items-center text-sm px-4 py-2 text-white/40">
 					<p>Keyword</p>
 					<p>Competition</p>
 				</div>
