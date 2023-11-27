@@ -4,7 +4,7 @@
     let whiteBg:string = ""
 
     if (highlight) {
-        whiteBg = "bg-white/10";
+        whiteBg = "bg-white/5";
     }
 </script>
 
