@@ -129,48 +129,8 @@
 <PageLayout topBar={false}>
 	<div class="flex gap-2 items-center justify-between responsive-p-x responsive-p-y">
 		<h2>T-Shirts</h2>
-		<div class="flex items-center gap-2">
-			<Modal actionIcon="fa-solid fa-plus" bind:isOpen={modal}>
-				<div slot="content">
-					<h2 class="mb-2">Add Channel</h2>
-					<div>
-						<Input
-							label="Channel Name"
-							placeholder="What is the name of your channel"
-							bind:value={channel.name}
-						/>
-						<Input
-							label="Youtube URL"
-							placeholder="Youtube channel link"
-							bind:value={channel.youtube}
-						/>
-						<Input
-							label="TikTok URL"
-							placeholder="TikTok channel link"
-							bind:value={channel.youtube}
-						/>
-						<Input
-							label="Description"
-							placeholder="What is the channel about"
-							bind:value={channel.description}
-						/>
-						<Input
-							label="TikTok Zapier Webhook"
-							placeholder="TikTok zapier webhook"
-							bind:value={channel.description}
-						/>
-						<Input
-							label="Youtube Zapier Webhook"
-							placeholder="TikTok zapier webhook"
-							bind:value={channel.description}
-						/>
-					</div>
-
-					<Button size="lg" on:click={() => console.log('test')}>Add Channel</Button>
-				</div>
-			</Modal>
-		</div>
 	</div>
+
 	<div class="flex w-full gap-4">
 		<div class="mx-auto w-full max-w-2xl h-full overflow-y-scroll">
 			<Section css="mb-2">
@@ -180,7 +140,8 @@
 					<Button style="primary" customClass="w-full">Search</Button>
 				</div>
 			</Section>
-			<h2 class="mt-6 mb-2">Trending on Tee Public</h2>
+
+			<h2 class="mt-6 mb-2">Trending on TeePublic</h2>
 			<Section>
 				<div class="font-semibold flex justify-between items-center text-sm px-4 py-2 text-white/40">
 					<p>Keyword</p>
@@ -189,7 +150,7 @@
 				{#each keywords as key, index}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div
-						class="flex justify-between border border-white/10 rounded-md items-center px-4 py-2 mb-2 hover:cursor-pointer hover:border-white/100"
+						class="flex justify-between border border-white/10 rounded-md items-center px-4 py-2 mb-1 hover:cursor-pointer hover:border-white/100"
 						on:click={() => (selected = keywords[index])}
 					>
 						<p>{key.keyword}</p>
@@ -197,6 +158,7 @@
 					</div>
 				{/each}
 			</Section>
+
 		</div>
 
 	</div>
