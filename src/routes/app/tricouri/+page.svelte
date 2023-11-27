@@ -45,6 +45,80 @@
 				'holiday',
 				'santa'
 			]
+		},
+		{
+			keyword: 'christmas',
+			competition: '32%',
+			also_search: [
+				'ugly christmas sweater',
+				'christmas movies',
+				'santa claus',
+				'cute christmas',
+				'elf matching',
+				'vintage christmas'
+			],
+			main_tag: 'christmas',
+			related_tags: [
+				'xmas',
+				'merry christmas',
+				'funny',
+				'birthday',
+				'gift',
+				'halloween',
+				'christmas gifts',
+				'holiday',
+				'santa'
+			]
+		}
+	,
+	{
+			keyword: 'christmas',
+			competition: '32%',
+			also_search: [
+				'ugly christmas sweater',
+				'christmas movies',
+				'santa claus',
+				'cute christmas',
+				'elf matching',
+				'vintage christmas'
+			],
+			main_tag: 'christmas',
+			related_tags: [
+				'xmas',
+				'merry christmas',
+				'funny',
+				'birthday',
+				'gift',
+				'halloween',
+				'christmas gifts',
+				'holiday',
+				'santa'
+			]
+		}
+	,
+	{
+			keyword: 'christmas',
+			competition: '32%',
+			also_search: [
+				'ugly christmas sweater',
+				'christmas movies',
+				'santa claus',
+				'cute christmas',
+				'elf matching',
+				'vintage christmas'
+			],
+			main_tag: 'christmas',
+			related_tags: [
+				'xmas',
+				'merry christmas',
+				'funny',
+				'birthday',
+				'gift',
+				'halloween',
+				'christmas gifts',
+				'holiday',
+				'santa'
+			]
 		}
 	];
 
@@ -106,8 +180,8 @@
 					<Button style="primary" customClass="w-full">Search</Button>
 				</div>
 			</Section>
+			<h2 class="mt-6 mb-2">Trending on Tee Public</h2>
 			<Section>
-				<h2 class="mb-2">Trending on Tee Public</h2>
 				<div class="font-semibold flex justify-between items-center text-sm px-4 py-2 text-white/40">
 					<p>Keyword</p>
 					<p>Competition</p>
