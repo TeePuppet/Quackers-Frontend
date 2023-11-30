@@ -38,7 +38,6 @@ const websites: Writable<Website[] | null> = writable();
 const websitesCollection = collection(db, "/websites/websites/data");
 
 
-
 const unsubscribe = onSnapshot(websitesCollection, (snapshot) => {
     const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Website);
     websites.set(data);

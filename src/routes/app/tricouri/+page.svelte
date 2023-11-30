@@ -4,131 +4,31 @@
 	import Input from '$lib/components/elements/inputs/Input.svelte';
 	import PageLayout from '$lib/components/layout/PageLayout.svelte';
 	import Section from '$lib/components/layout/Section.svelte';
+	import { getPopularTags } from '$lib/utils/trending';
+	import { onMount } from 'svelte';
+
+	import combinedData from '$lib/stores/tricouri/teepublic';
 
 	// Modal
 	let modal: boolean;
 	const closeModal = () => (modal = false);
 
-
 	let searchKeyword:string
 
-	let channel = {
-		name: '',
-		youtube: '',
-		tiktok: '',
-		description: '',
-		tiktok_zapier_webhook: '',
-		youtube_zapier_webhook: ''
-	};
+	$: tags = $combinedData.data;
 
-	let keywords = [
-		{
-			keyword: 'christmas',
-			competition: '32%',
-			also_search: [
-				'ugly christmas sweater',
-				'christmas movies',
-				'santa claus',
-				'cute christmas',
-				'elf matching',
-				'vintage christmas'
-			],
-			main_tag: 'christmas',
-			related_tags: [
-				'xmas',
-				'merry christmas',
-				'funny',
-				'birthday',
-				'gift',
-				'halloween',
-				'christmas gifts',
-				'holiday',
-				'santa'
-			]
-		},
-		{
-			keyword: 'christmas',
-			competition: '32%',
-			also_search: [
-				'ugly christmas sweater',
-				'christmas movies',
-				'santa claus',
-				'cute christmas',
-				'elf matching',
-				'vintage christmas'
-			],
-			main_tag: 'christmas',
-			related_tags: [
-				'xmas',
-				'merry christmas',
-				'funny',
-				'birthday',
-				'gift',
-				'halloween',
-				'christmas gifts',
-				'holiday',
-				'santa'
-			]
-		}
-	,
-	{
-			keyword: 'christmas',
-			competition: '32%',
-			also_search: [
-				'ugly christmas sweater',
-				'christmas movies',
-				'santa claus',
-				'cute christmas',
-				'elf matching',
-				'vintage christmas'
-			],
-			main_tag: 'christmas',
-			related_tags: [
-				'xmas',
-				'merry christmas',
-				'funny',
-				'birthday',
-				'gift',
-				'halloween',
-				'christmas gifts',
-				'holiday',
-				'santa'
-			]
-		}
-	,
-	{
-			keyword: 'christmas',
-			competition: '32%',
-			also_search: [
-				'ugly christmas sweater',
-				'christmas movies',
-				'santa claus',
-				'cute christmas',
-				'elf matching',
-				'vintage christmas'
-			],
-			main_tag: 'christmas',
-			related_tags: [
-				'xmas',
-				'merry christmas',
-				'funny',
-				'birthday',
-				'gift',
-				'halloween',
-				'christmas gifts',
-				'holiday',
-				'santa'
-			]
-		}
-	];
+    const showLowCompetiton = () => {
+		if (tags) tags = tags.filter(tag => tag.data.products < 1500)
+	}
 
-	let selected: any;
-	$: selected = keywords[0];
+	const showAllTags = () => {
+		tags = $combinedData.data;
+	}
 </script>
 
 <PageLayout topBar={false}>
 	<div class="flex gap-2 items-center justify-between responsive-p-x responsive-p-y">
-		<h2>T-Shirts</h2>
+		<h2>Tricouri</h2>
 	</div>
 
 	<div class="flex w-full gap-4">
@@ -141,25 +41,37 @@
 				</div>
 			</Section>
 
-			<h2 class="mt-6 mb-2">Trending on TeePublic</h2>
-			<Section>
-				<div class="font-semibold flex justify-between items-center text-sm px-4 py-2 text-white/40">
-					<p>Keyword</p>
-					<p>Competition</p>
+			<div class="mt-6 flex justify-between items-center mb-2">
+				<h2>Trending on TeePublic</h2>
+				<div class="flex gap-2">
+					<Button on:click={showLowCompetiton}>Low Competition</Button>
+					<Button on:click={showAllTags}>All Tags</Button>
 				</div>
-				{#each keywords as key, index}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<div
-						class="flex justify-between border border-white/10 rounded-md items-center px-4 py-2 mb-1 hover:cursor-pointer hover:border-white/100"
-						on:click={() => (selected = keywords[index])}
-					>
-						<p>{key.keyword}</p>
-						<p>{key.competition}</p>
+			</div>
+
+			<Section>
+				{#if tags}
+					<div class="font-semibold flex justify-between items-center text-sm px-4 py-2 text-white/40">
+						<p>Keyword</p>
+						<p>Competition</p>
 					</div>
-				{/each}
+					{#each tags as tag, index}
+						<div
+							class="flex justify-between border border-white/10 rounded-md items-center px-4 py-2 mb-1 hover:cursor-pointer hover:border-white/100">
+							<p>{tag.searchTag}</p>
+							<p>{tag.data.products}</p>
+						</div>
+						
+					{:else}
+					<p class="">Loading...</p>
+					{/each}
+				{/if}
 			</Section>
 
 		</div>
 
 	</div>
 </PageLayout>
+
+
+
