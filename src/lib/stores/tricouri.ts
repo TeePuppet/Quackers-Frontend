@@ -38,6 +38,7 @@ export interface TrendingDataWithDate {
 // Define the stores
 const trendingData: Writable<TeePublicTrending[] | null> = writable(null);
 const scrapeDate: Writable<TeePublicScrapeDate | null> = writable(null);
+export const selectedTag = writable(null);
 
 // Specify the ID of the date document
 const dateDocId = "date"; // Replace with the actual ID of the date document

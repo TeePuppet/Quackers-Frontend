@@ -13,6 +13,7 @@
 			<MenuItem path="/app/tricouri" faIcon="fa-solid fa-shirt" label="Tricouri"/>
 			<MenuItem path="/app/siteuri" faIcon="fa-regular fa-message" label="Site'uri"/>
 			<MenuItem path="/app/videos" faIcon="fa-brands fa-youtube" label="Videos"/>
+			<MenuItem path="/app/admin/logs" faIcon="fa-solid fa-chart-simple" label="Logs"/>
 		</div>
 		<div class="hidden sm:block">
 			<button class="items-end w-full" on:click={()=> logout()}>Logout</button>

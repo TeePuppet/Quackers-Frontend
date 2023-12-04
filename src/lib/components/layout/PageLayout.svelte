@@ -14,7 +14,7 @@
 
 </script>
 {#if topBar}
-    <div id="top-bar" class="responsive-p-x responsive-p-y">
+    <div id="top-bar" class="responsive-p-x responsive-p-y z-10">
         <div class="flex items-center">
             <Button size="icon" on:click={() => history.back()}> <i class="fa-solid fa-chevron-left"></i></Button>
             <div>
@@ -37,7 +37,7 @@
 <style lang="postcss">
 
 	#top-bar {
-		@apply sticky top-0 flex justify-between items-center bg-black;
+		@apply sticky top-0 flex justify-between items-center bg-gradient-to-b from-black;
 	}
 
 </style>

@@ -5,7 +5,7 @@
 	import Input from "$lib/components/elements/inputs/Input.svelte";
 	import Tabs from "$lib/components/Tabs.svelte";
 	import TabContent from "$lib/components/TabContent.svelte";
-	import { generateDescription, getEMAGProductData } from "$lib/utils/openai";
+	// import { generateDescription, getEMAGProductData } from "$lib/utils/openai";
 	import ProductCard from "./ProductCard.svelte";
 	import Row from "$lib/components/Row.svelte";
 	import Loading from "$lib/components/Loading.svelte";
@@ -38,25 +38,23 @@
 
     ]
 
+    // const generateTitleDescription = async () => {
+    //     introducere = await generateDescription(titlu) as string
+    // }
+    // const test = "Testing Logpoints"
+    // const productData = async () => {
+    //     produs = await getEMAGProductData(linkProdus)
+    //     listaProduse.push({
+    //         titlu: produs.title,
+    //         imagini: produs.images,
+    //         descriere: "Descriere",
+    //         pro: [],
+    //         contra:[]
+    //     })
+    //     listaProduse = listaProduse
+    //     linkProdus = '';
 
-
-    const generateTitleDescription = async () => {
-        introducere = await generateDescription(titlu) as string
-    }
-    const test = "Testing Logpoints"
-    const productData = async () => {
-        produs = await getEMAGProductData(linkProdus)
-        listaProduse.push({
-            titlu: produs.title,
-            imagini: produs.images,
-            descriere: "Descriere",
-            pro: [],
-            contra:[]
-        })
-        listaProduse = listaProduse
-        linkProdus = '';
-
-    }
+    // }
 
     const publishWebsite =async () => {
         await deployWebsite($selectedWebsite!.name, $selectedWebsite!.github.url.replace("https://github.com/", ""), $selectedWebsite?.github.id! )
