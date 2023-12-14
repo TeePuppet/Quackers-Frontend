@@ -1,5 +1,7 @@
 <script lang="ts">
 	import PageLayout from '$lib/components/layout/PageLayout.svelte';
+	import Accounts from './Accounts.svelte';
+	import SearchKeyword from './SearchKeyword.svelte';
 	import Trending from './Trending.svelte';
 </script>
 
@@ -10,7 +12,8 @@
 
 	<div class="flex w-full gap-4">
 		<div class="mx-auto w-full max-w-2xl h-full overflow-y-scroll">
-
+			<SearchKeyword />
+			<!-- <Accounts /> -->
 			<Trending/>
 
 		</div>
