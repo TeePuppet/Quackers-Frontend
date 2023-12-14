@@ -4,15 +4,17 @@ import { onMount } from "svelte";
 import Button from '$lib/components/elements/button/Button.svelte';
 import PageLayout from '$lib/components/layout/PageLayout.svelte';
 import Section from '$lib/components/layout/Section.svelte';
-
 import trendingTags, { selectedTag } from "$lib/stores/tricouri"
 import { page } from '$app/stores';
 import { goto } from "$app/navigation";
+import { getMultipleRandom } from "$lib/utils/tricouri.js";
 
 export let data
 console.log(data)
 
 $: tags = data.tag
+$: relatedTags = data.relatedTags
+$: popularTags = data.popularTags
 $: recommendedTags = data.recommendedTags
 // $: console.log('the tags', tags)
 
@@ -21,10 +23,21 @@ function selectTag(tag: any): void {
     goto(`/app/tricouri/keywords/${tag}`);
 }
 
+const shuffelRecommendedTags = () => {
+    const shufflePopularTags = getMultipleRandom(popularTags, 3)
+    recommendedTags = [...relatedTags, ...shufflePopularTags]
+}
+
+const copyToClipboard = (dataToCopy:string) => {
+    console.log('Copy to Clipboard')
+}
 
 function analyzeKeywords(tag:string[]) {
     console.log('test')
 }
+
+
+
 </script>
 
 <PageLayout topBar={true} pageTitle={$page.params.keyword}>
@@ -113,22 +126,23 @@ function analyzeKeywords(tag:string[]) {
 	</div>
     
     <div class="flex flex-col w-1/3 gap-4">
-        <Section>
+        <Section css="flex flex-col gap-2">
             <div>
-                <h2>Main Tag</h2>Copy
-                <p>Main tag</p> 
+                <h2>Main Tag</h2>
+                <p class="text-xs inline font-medium bg-white/10 border border-white/10 px-2 py-1 rounded-md">{$page.params.keyword}</p>
             </div>
 
             <div>
-                <h2>Recomended Tags</h2>
-                <div class="flex gap-1 flex-nowrap">
+                <div class="flex justify-between items-center mb-2">
+                <h2>Recomended Tags</h2> <Button size="xs" on:click = {() => shuffelRecommendedTags()}> Shuffle </Button>
+                </div>
+                <div class="flex gap-1 flex-wrap">
                 {#each recommendedTags as tag}
-                    <p class="text-xs font-medium bg-white/10 border border-white/10 px-2 py-1 rounded-md whitespace-nowrap">{tag}</p>
+                    <p class="text-xs font-medium bg-white/10 border border-white/10 px-2 py-1 rounded-md">{tag}</p>
                 {/each}
             </div>
-                <button>Copy</button>
             </div>
-            <Button customClass="w-full">Generate Metadata</Button>
+            <!-- <Button customClass="w-full">Generate Metadata</Button> -->
         </Section>
     </div>
 

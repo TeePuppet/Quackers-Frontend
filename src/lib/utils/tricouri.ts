@@ -12,3 +12,10 @@ export const getTeePublicTag = async (tag:string) => {
             data: await tagReq.json()
     }
 }
+
+export const  getMultipleRandom = (arr:string[], num:number) => {
+    console.log(arr)
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  
+    return shuffled.slice(0, num);
+}

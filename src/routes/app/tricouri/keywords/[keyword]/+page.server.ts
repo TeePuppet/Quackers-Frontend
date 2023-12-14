@@ -1,6 +1,7 @@
 import trendingTags, { selectedTag, type TeePublicTrending } from '$lib/stores/tricouri.js';
 import { getTeePublicTag } from '$lib/utils/tricouri.js';
 import { get } from 'svelte/store';
+import { getMultipleRandom } from "$lib/utils/tricouri.js";
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
@@ -15,15 +16,25 @@ export async function load({ params }) {
         selectedTag.set(tag)
         // console.log('Tag found', tag)
     }
-    let recommendedTags = []
     const relatedTags = tag.data.relatedTags.slice(0, 2);
     const alsoSearch = tag.data.alsoSearch.slice(0, 2);
-    recommendedTags = [...relatedTags, ...alsoSearch]
-    console.log('Tag found', recommendedTags)
+    // const popularTags = getMultipleRandom(tag.data.tags)
+    const filteredPopularTags = tag.data.tags.filter(tag => tag.count > 5)
+    const popularTags = filteredPopularTags.map(a => a.tag )
+
+    const nonDuplicatePopularTags = popularTags.filter(item => !relatedTags.includes(item));
+
+   
+
 
     return {
         tag,
-        recommendedTags
+        relatedTags,
+        popularTags: nonDuplicatePopularTags,
+        recommendedTags: [...relatedTags, ...getMultipleRandom(nonDuplicatePopularTags, 3) ]
     }
 }
+
+
+
 
