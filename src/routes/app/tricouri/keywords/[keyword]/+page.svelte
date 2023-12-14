@@ -10,7 +10,6 @@ import { goto } from "$app/navigation";
 import { getMultipleRandom } from "$lib/utils/tricouri.js";
 
 export let data
-console.log(data)
 
 $: tags = data.tag
 $: relatedTags = data.relatedTags
@@ -29,13 +28,17 @@ const shuffelRecommendedTags = () => {
 }
 
 const copyToClipboard = (dataToCopy:string) => {
-    console.log('Copy to Clipboard')
+    const textarea = document.createElement("textarea");
+    textarea.value = dataToCopy;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
 }
 
 function analyzeKeywords(tag:string[]) {
     console.log('test')
 }
-
 
 
 </script>
@@ -126,15 +129,23 @@ function analyzeKeywords(tag:string[]) {
 	</div>
     
     <div class="flex flex-col w-1/3 gap-4">
-        <Section css="flex flex-col gap-2">
+        <Section css="flex flex-col gap-4">
             <div>
-                <h2>Main Tag</h2>
+                <div class="flex justify-between">
+                    <h2>Main Tag</h2>
+                <Button size="xs" on:click = {() => copyToClipboard($page.params.keyword)}> Copy </Button>
+                </div>
                 <p class="text-xs inline font-medium bg-white/10 border border-white/10 px-2 py-1 rounded-md">{$page.params.keyword}</p>
             </div>
 
             <div>
                 <div class="flex justify-between items-center mb-2">
-                <h2>Recomended Tags</h2> <Button size="xs" on:click = {() => shuffelRecommendedTags()}> Shuffle </Button>
+                <h2>Recomended Tags</h2> 
+                <div class="flex justify-between gap-1">
+                    <Button size="xs" on:click = {() => shuffelRecommendedTags()}> Shuffle </Button>
+                    <Button size="xs" on:click = {() => copyToClipboard(recommendedTags.toString())}> Copy </Button>
+                </div>
+
                 </div>
                 <div class="flex gap-1 flex-wrap">
                 {#each recommendedTags as tag}
